@@ -5,13 +5,17 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     variadicparameters.cpp \
-    template.cpp
+    streamlogger.cpp \
+    ostreamoverride.cpp \
+    templatetest.cpp
 
     #configurer/src/configurer.cpp
 
 HEADERS += \
     variadicparameters.h \
-    template.h
+    streamlogger.h \
+    ostreamoverride.h \
+    templatetest.h
 #    configurer/include/configurer.h
 
 
