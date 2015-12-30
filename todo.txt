@@ -1,24 +1,32 @@
-work_diary
-
-typedef
-define
-class (ecapsulation, inheritance, pholymophism, ctr dtr)
-semaphore
-pipe
-eventQueue
-string
-std::tools
-enum
-#pragma pack(push, 1) #pragma pack(pop)
-timer
-date time
-memset memcpy
-curl
-zip
-Thread + mutex
-tcp
-udp
-good urls
-boost
-google test
-Data structures: queue, heap, hash, sort, find, graphic, list, vector...
+	work_diary
+	typedef
+	define
+	class (ecapsulation, inheritance, pholymophism, ctr dtr)
+	semaphore
+	pipe
+	eventQueue
+	string
+	std::tools
+	enum
+	#pragma pack(push, 1) #pragma pack(pop)
+	timer
+	date time
+	memset memcpy
+	curl
+	zip
+	Thread + mutex
+	tcp
+	udp
+	good urls
+	boost
+	google test
+	Data structures: queue, heap, hash, sort, find, graphic, list, vector...
+	file io
+	template
+	stream
+*	variadic
+	Makefile
+	gdb
+	friend class
+	friend method
+	doxgen
