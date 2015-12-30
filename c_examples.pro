@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     streamlogger.cpp \
     ostreamoverride.cpp \
     templatetest2.inc \
-    templatetest1.cpp
+    templatetest1.cpp \
+    graphic.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -16,7 +17,8 @@ HEADERS += \
     streamlogger.h \
     ostreamoverride.h \
     templatetest2.h \
-    templatetest1.h
+    templatetest1.h \
+    graphic.h
 #    configurer/include/configurer.h
 
 

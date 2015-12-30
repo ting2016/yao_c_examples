@@ -19,3 +19,6 @@ Thread + mutex
 tcp
 udp
 good urls
+boost
+google test
+Data structures: queue, heap, hash, sort, find, graphic, list, vector...
