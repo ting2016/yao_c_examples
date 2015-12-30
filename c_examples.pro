@@ -9,7 +9,8 @@ SOURCES += main.cpp \
     ostreamoverride.cpp \
     templatetest2.inc \
     templatetest1.cpp \
-    graphic.cpp
+    graphic.cpp \
+    functionpointer.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -18,7 +19,8 @@ HEADERS += \
     ostreamoverride.h \
     templatetest2.h \
     templatetest1.h \
-    graphic.h
+    graphic.h \
+    functionpointer.h
 #    configurer/include/configurer.h
 
 

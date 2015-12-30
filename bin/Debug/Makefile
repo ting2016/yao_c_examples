@@ -52,12 +52,16 @@ SOURCES       = ../../main.cpp \
 		../../variadicparameters.cpp \
 		../../streamlogger.cpp \
 		../../ostreamoverride.cpp \
-		../../templatetest1.cpp 
+		../../templatetest1.cpp \
+		../../graphic.cpp \
+		../../functionpointer.cpp 
 OBJECTS       = main.o \
 		variadicparameters.o \
 		streamlogger.o \
 		ostreamoverride.o \
-		templatetest1.o
+		templatetest1.o \
+		graphic.o \
+		functionpointer.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -216,11 +220,15 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		streamlogger.h \
 		ostreamoverride.h \
 		templatetest2.h \
-		templatetest1.h ../../main.cpp \
+		templatetest1.h \
+		graphic.h \
+		functionpointer.h ../../main.cpp \
 		../../variadicparameters.cpp \
 		../../streamlogger.cpp \
 		../../ostreamoverride.cpp \
-		../../templatetest1.cpp
+		../../templatetest1.cpp \
+		../../graphic.cpp \
+		../../functionpointer.cpp
 QMAKE_TARGET  = c_examples
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = c_examples
@@ -620,6 +628,12 @@ ostreamoverride.o: ../../ostreamoverride.cpp ../../ostreamoverride.h
 
 templatetest1.o: ../../templatetest1.cpp ../../templatetest1.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o templatetest1.o ../../templatetest1.cpp
+
+graphic.o: ../../graphic.cpp ../../graphic.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graphic.o ../../graphic.cpp
+
+functionpointer.o: ../../functionpointer.cpp ../../functionpointer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o functionpointer.o ../../functionpointer.cpp
 
 ####### Install
 

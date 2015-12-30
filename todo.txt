@@ -30,3 +30,8 @@
 	friend class
 	friend method
 	doxgen
+	pointers: array pointer, pointer to pointer, pointer to array, function to pointer
+	smart pointer
+	static_cast, dynamic_cast, reinterpret_cast, const_cast, explicit cast, implicit conversions
+	algorithm
+	iterator & implimentation	
