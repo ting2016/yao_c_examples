@@ -34,4 +34,6 @@
 	smart pointer
 	static_cast, dynamic_cast, reinterpret_cast, const_cast, explicit cast, implicit conversions
 	algorithm
-	iterator & implimentation	
+	iterator & implimentation
+
+	logger: variadic log, stream log, tcp log	
