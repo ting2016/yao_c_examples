@@ -16,4 +16,6 @@ memset memcpy
 curl
 zip
 Thread + mutex
-
+tcp
+udp
+good urls
