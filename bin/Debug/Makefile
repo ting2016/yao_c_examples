@@ -52,12 +52,12 @@ SOURCES       = ../../main.cpp \
 		../../variadicparameters.cpp \
 		../../streamlogger.cpp \
 		../../ostreamoverride.cpp \
-		../../templatetest.cpp 
+		../../templatetest1.cpp 
 OBJECTS       = main.o \
 		variadicparameters.o \
 		streamlogger.o \
 		ostreamoverride.o \
-		templatetest.o
+		templatetest1.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -215,11 +215,12 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../../../../c_examples.pro variadicparameters.h \
 		streamlogger.h \
 		ostreamoverride.h \
-		templatetest.h ../../main.cpp \
+		templatetest2.h \
+		templatetest1.h ../../main.cpp \
 		../../variadicparameters.cpp \
 		../../streamlogger.cpp \
 		../../ostreamoverride.cpp \
-		../../templatetest.cpp
+		../../templatetest1.cpp
 QMAKE_TARGET  = c_examples
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = c_examples
@@ -603,7 +604,9 @@ compiler_clean:
 
 main.o: ../../main.cpp ../../variadicparameters.h \
 		../../ostreamoverride.h \
-		../../templatetest.h
+		../../templatetest1.h \
+		../../templatetest2.h \
+		../../templatetest2.inc
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 variadicparameters.o: ../../variadicparameters.cpp ../../variadicparameters.h
@@ -615,8 +618,8 @@ streamlogger.o: ../../streamlogger.cpp ../../streamlogger.h
 ostreamoverride.o: ../../ostreamoverride.cpp ../../ostreamoverride.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ostreamoverride.o ../../ostreamoverride.cpp
 
-templatetest.o: ../../templatetest.cpp ../../templatetest.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o templatetest.o ../../templatetest.cpp
+templatetest1.o: ../../templatetest1.cpp ../../templatetest1.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o templatetest1.o ../../templatetest1.cpp
 
 ####### Install
 

@@ -7,15 +7,16 @@ SOURCES += main.cpp \
     variadicparameters.cpp \
     streamlogger.cpp \
     ostreamoverride.cpp \
-    templatetest.cpp
-
+    templatetest2.inc \
+    templatetest1.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
     variadicparameters.h \
     streamlogger.h \
     ostreamoverride.h \
-    templatetest.h
+    templatetest2.h \
+    templatetest1.h
 #    configurer/include/configurer.h
 
 

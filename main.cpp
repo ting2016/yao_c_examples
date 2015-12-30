@@ -1,11 +1,12 @@
 #include "variadicparameters.h"
 #include "ostreamoverride.h"
-#include "templatetest.h"
+#include "templatetest1.h"
+#include "templatetest2.h"
 #include <iostream>
+#include <string>
 using namespace std;
 int main()
 {
-//    OStreamOverride::test();
-    TemplateTest<int> tt(22, 33);
-    std::cout << tt.getmax() << std::endl;
+    TemplateTest2<float>::test();
+    TemplateTest1<float>::test();
 }
