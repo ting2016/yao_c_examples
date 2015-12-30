@@ -1,3 +1,5 @@
+work_diary
+
 typedef
 define
 class (ecapsulation, inheritance, pholymophism, ctr dtr)
