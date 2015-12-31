@@ -1,6 +1,6 @@
 #include "streamlogger.h"
 
-void StreamLogger::test(){
+void testStreamLogger(){
     StreamLogger logger;
     logger << "hello\t" << "world" << std::endl;
     logger << "num:\t" << 10 << std::endl;

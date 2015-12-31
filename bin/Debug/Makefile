@@ -54,14 +54,16 @@ SOURCES       = ../../main.cpp \
 		../../ostreamoverride.cpp \
 		../../templatetest1.cpp \
 		../../graphic.cpp \
-		../../functionpointer.cpp 
+		../../functionpointer.cpp \
+		../../definetest.cpp 
 OBJECTS       = main.o \
 		variadicparameters.o \
 		streamlogger.o \
 		ostreamoverride.o \
 		templatetest1.o \
 		graphic.o \
-		functionpointer.o
+		functionpointer.o \
+		definetest.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -222,13 +224,15 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		templatetest2.h \
 		templatetest1.h \
 		graphic.h \
-		functionpointer.h ../../main.cpp \
+		functionpointer.h \
+		definetest.h ../../main.cpp \
 		../../variadicparameters.cpp \
 		../../streamlogger.cpp \
 		../../ostreamoverride.cpp \
 		../../templatetest1.cpp \
 		../../graphic.cpp \
-		../../functionpointer.cpp
+		../../functionpointer.cpp \
+		../../definetest.cpp
 QMAKE_TARGET  = c_examples
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = c_examples
@@ -614,7 +618,8 @@ main.o: ../../main.cpp ../../variadicparameters.h \
 		../../ostreamoverride.h \
 		../../templatetest1.h \
 		../../templatetest2.h \
-		../../templatetest2.inc
+		../../templatetest2.inc \
+		../../functionpointer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 variadicparameters.o: ../../variadicparameters.cpp ../../variadicparameters.h
@@ -634,6 +639,9 @@ graphic.o: ../../graphic.cpp ../../graphic.h
 
 functionpointer.o: ../../functionpointer.cpp ../../functionpointer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o functionpointer.o ../../functionpointer.cpp
+
+definetest.o: ../../definetest.cpp ../../definetest.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o definetest.o ../../definetest.cpp
 
 ####### Install
 

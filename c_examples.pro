@@ -10,7 +10,8 @@ SOURCES += main.cpp \
     templatetest2.inc \
     templatetest1.cpp \
     graphic.cpp \
-    functionpointer.cpp
+    functionpointer.cpp \
+    definetest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -20,7 +21,8 @@ HEADERS += \
     templatetest2.h \
     templatetest1.h \
     graphic.h \
-    functionpointer.h
+    functionpointer.h \
+    definetest.h
 #    configurer/include/configurer.h
 
 

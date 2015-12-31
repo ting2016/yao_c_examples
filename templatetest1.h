@@ -6,7 +6,8 @@ private:
 public:
     TemplateTest1(T first, T second);
     T getmax();
-    static void test();
 };
+
+void testTemplate1();
 
 

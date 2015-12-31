@@ -50,5 +50,6 @@ public:
         manip(log);
         return *this;
     }
-    static void test();
 };
+
+void testStreamLogger();

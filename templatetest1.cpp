@@ -17,8 +17,13 @@ T TemplateTest1<T>::getmax(){
     return retval;
 }
 
-template <class T>
-void TemplateTest1<T>::test(){
+// Explicit template instantiation
+template class TemplateTest1<int>;
+template class TemplateTest1<float>;
+template class TemplateTest1<double>;
+template class TemplateTest1<std::string>;
+
+void testTemplate1(){
     int a1 = 22, b1 = 33;
     TemplateTest1<int> tmpl(a1, b1);
     std::cout << "max(" << a1 << "," << b1 << "):" << tmpl.getmax() << std::endl;
@@ -27,10 +32,3 @@ void TemplateTest1<T>::test(){
     TemplateTest1<std::string> tmpl2(a2, b2);
     std::cout << "max(" << a2 << "," << b2 << "):" << tmpl2.getmax() << std::endl;
 }
-
-// Explicit template instantiation
-template class TemplateTest1<int>;
-template class TemplateTest1<float>;
-template class TemplateTest1<double>;
-template class TemplateTest1<std::string>;
-

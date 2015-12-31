@@ -6,7 +6,6 @@ public:
     template<typename FIRST_PARA, typename... PARAS>
     void expand(FIRST_PARA firstPara, PARAS... paras);
 
-    static void test();
 private:
     void expand();
 };
@@ -16,3 +15,5 @@ void VariadicParameters::expand(FIRST_PARA firstPara, PARAS... paras){
     std::cout << firstPara;
     expand(paras...);
 }
+
+void testVariadicParameters();

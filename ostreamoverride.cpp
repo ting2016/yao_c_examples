@@ -9,7 +9,8 @@ std::ostream& operator<<(std::ostream& os, const OStreamOverride& para){
     return os;
 }
 
-void OStreamOverride::test(){
+
+void testOStreamOverride(){
     OStreamOverride oso(31, 12, 2015);
     std::cout << oso << std::endl;
 }

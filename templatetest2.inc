@@ -19,8 +19,8 @@ T TemplateTest2<T>::Getalue()
     return m_Obj;
 }
 
-template <class T>
-void TemplateTest2<T>::test(){
+
+void testTemplate2(){
     TemplateTest2<int> tmpObj1;
     tmpObj1.SetValue(100);
     std::cout << tmpObj1.Getalue() << std::endl;

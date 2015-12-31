@@ -6,5 +6,6 @@ class OStreamOverride{
 public:
     OStreamOverride(int f1, int f2, int f3);
     friend std::ostream& operator<<(std::ostream& os, const OStreamOverride& para);
-    static void test();
 };
+
+void testOStreamOverride();

@@ -7,11 +7,11 @@ public:
     TemplateTest2();
     void SetValue( T obj_i );
     T Getalue();
-    static void test();
 
 private:
     T m_Obj;
 };
 
+void testTemplate2();
 #include "templatetest2.inc"
 #endif
