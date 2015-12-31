@@ -36,4 +36,5 @@
 	algorithm
 	iterator & implimentation
 
-	logger: variadic log, stream log, tcp log	
+	logger: variadic log, stream log, tcp log
+	predifined MACRO __LINE__, __DATE__, __FUNC__, __TIME__	

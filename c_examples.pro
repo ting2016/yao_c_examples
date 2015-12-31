@@ -22,7 +22,8 @@ HEADERS += \
     templatetest1.h \
     graphic.h \
     functionpointer.h \
-    definetest.h
+    definetest.h \
+    version.h
 #    configurer/include/configurer.h
 
 

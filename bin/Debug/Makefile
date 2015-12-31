@@ -225,7 +225,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		templatetest1.h \
 		graphic.h \
 		functionpointer.h \
-		definetest.h ../../main.cpp \
+		definetest.h \
+		version.h ../../main.cpp \
 		../../variadicparameters.cpp \
 		../../streamlogger.cpp \
 		../../ostreamoverride.cpp \
@@ -614,12 +615,15 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../../main.cpp ../../variadicparameters.h \
+main.o: ../../main.cpp ../../streamlogger.h \
+		../../variadicparameters.h \
 		../../ostreamoverride.h \
 		../../templatetest1.h \
 		../../templatetest2.h \
 		../../templatetest2.inc \
-		../../functionpointer.h
+		../../functionpointer.h \
+		../../definetest.h \
+		../../version.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 variadicparameters.o: ../../variadicparameters.cpp ../../variadicparameters.h

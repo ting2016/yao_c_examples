@@ -1,8 +1,7 @@
 #ifndef _TESTTEMP_H_
 #define _TESTTEMP_H_
 template<class T>
-class TemplateTest2
-{
+class TemplateTest2{
 public:
     TemplateTest2();
     void SetValue( T obj_i );

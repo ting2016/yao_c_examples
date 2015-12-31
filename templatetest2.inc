@@ -3,19 +3,16 @@
 #include <string>
 
 template <class T>
-TemplateTest2<T>::TemplateTest2()
-{
+TemplateTest2<T>::TemplateTest2(){
 }
 
 template <class T>
-void TemplateTest2<T>::SetValue( T obj_i )
-{
+void TemplateTest2<T>::SetValue( T obj_i ){
     m_Obj = obj_i;
 }
 
 template <class T>
-T TemplateTest2<T>::Getalue()
-{
+T TemplateTest2<T>::Getalue(){
     return m_Obj;
 }
 

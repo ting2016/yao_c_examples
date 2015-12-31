@@ -1,6 +1,6 @@
 #pragma once
-class Graphic
-{
+class Graphic{
 public:
     Graphic();
 };
+

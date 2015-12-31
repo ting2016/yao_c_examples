@@ -5,15 +5,9 @@
 #include "templatetest2.h"
 #include "functionpointer.h"
 #include "definetest.h"
+#include "version.h"
 #include <iostream>
 #include <string>
 using namespace std;
-int main()
-{
-    testVariadicParameters();
-//    testTemplate2();
-//    testStreamLogger();
-//    testOStreamOverride();
-//    testFunctionPoint();
-//    testDefine();
+int main(){
 }
