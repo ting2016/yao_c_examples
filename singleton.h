@@ -30,6 +30,8 @@ public:
     virtual void bar();
 protected:
     SingletonDerived();
+    SingletonDerived& operator=( const SingletonDerived& ) = delete;
+    SingletonDerived( const SingletonDerived& other ) = delete;
     virtual ~SingletonDerived();
 private:
     int value;
