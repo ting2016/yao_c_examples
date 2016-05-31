@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     templatetest1.cpp \
     graphic.cpp \
     functionpointer.cpp \
-    definetest.cpp
+    definetest.cpp \
+    singleton.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -23,7 +24,8 @@ HEADERS += \
     graphic.h \
     functionpointer.h \
     definetest.h \
-    version.h
+    version.h \
+    singleton.h
 #    configurer/include/configurer.h
 
 

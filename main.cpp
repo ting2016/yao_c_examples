@@ -6,8 +6,10 @@
 #include "functionpointer.h"
 #include "definetest.h"
 #include "version.h"
+#include "singleton.h"
 #include <iostream>
 #include <string>
 using namespace std;
 int main(){
+    testSingleton();
 }
