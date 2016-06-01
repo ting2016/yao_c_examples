@@ -7,9 +7,11 @@
 #include "definetest.h"
 #include "version.h"
 #include "singleton.h"
+#include "graphic.h"
 #include <iostream>
 #include <string>
 using namespace std;
+
 int main(){
-    testSingleton();
+    testGragh();
 }

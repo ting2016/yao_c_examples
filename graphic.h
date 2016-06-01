@@ -1,12 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-//in this example, we will focus on the following skills
-//1. comments
-//2. class design(encapsulation, inheritance, polymorphism)
-//3. enum
-//4. namespace
-
 
 namespace yao_graph{
 
@@ -87,6 +81,30 @@ public:
      */
     Point& operator=(const Point& other);
 
+    /*!
+     * \brief getX
+     * \return int
+     */
+    int getX() const;
+
+    /*!
+     * \brief getY
+     * \return int
+     */
+    int getY() const;
+
+    /*!
+     * \brief setX
+     * \param int x
+     */
+    void setX(int x);
+
+    /*!
+     * \brief setY
+     * \param int y
+     */
+    void setY(int y);
+
     ~Point();
 protected:
     std::ostream& stream_write(std::ostream&) const;
@@ -137,28 +155,114 @@ public:
      * \brief Rectangle, default CTOR
      */
     Rectangle();
-    Rectangle(const Point& top_left, const Point& bottom_right);
-    Rectangle(int x, int y, int w, int h);
 
+    /*!
+     * \brief Rectangle, CTOR
+     * \param const Point& top_left
+     * \param const Point& bottom_right
+     */
+    Rectangle(const Point& top_left, const Point& bottom_right);
+
+    /*!
+     * \brief Rectangle, CTOR
+     * \param int left
+     * \param int top
+     * \param int width
+     * \param int height
+     */
+    Rectangle(int left, int top, int width, int height);
+
+    /*!
+     * \brief Rectangle, CTOR
+     * \param const Rectangle& other
+     */
     Rectangle(const Rectangle& other);
+
+    /*!
+     * \brief operator =, asign CTOR
+     * \param const Rectangle& other
+     * \return
+     */
     Rectangle& operator =(const Rectangle& other);
 
+    /*!
+     * \brief topLeft
+     * \return const Point&
+     */
     const Point& topLeft() const;
+
+    /*!
+     * \brief bottomRight
+     * \return const Point&
+     */
     const Point& bottomRight() const;
+
+    /*!
+     * \brief getWidth
+     * \return int
+     */
     int getWidth() const;
+
+    /*!
+     * \brief getHeight
+     * \return int
+     */
     int getHeight() const;
 
+    /*!
+     * \brief set
+     * \param const Point& top_left
+     * \param const Point& bottom_right
+     */
     void set(const Point& top_left, const Point& bottom_right);
-    void set(int x, int y, int w, int h);
-    void setWidth(int w);
-    void setHeight(int h);
 
-    void move(int x, int y);
+    /*!
+     * \brief set
+     * \param int left
+     * \param int top
+     * \param int width
+     * \param int height
+     */
+    void set(int left, int top, int width, int height);
+
+    /*!
+     * \brief setWidth
+     * \param int width
+     */
+    void setWidth(int width);
+
+    /*!
+     * \brief setHeight
+     * \param int height
+     */
+    void setHeight(int height);
+
+    /*!
+     * \brief move
+     * \param int left
+     * \param int top
+     */
+    void move(int left, int top);
+
+    /*!
+     * \brief isValid
+     * \return bool
+     */
     bool isValid() const;
 
+    /*!
+     * \brief intersects
+     * \param const Rectangle& other
+     * \return bool
+     */
     bool intersects(const Rectangle& other) const;
 
-    Rectangle& intersected(const Rectangle& other);
+    /*!
+     * \brief intersected
+     * \param const Rectangle& other
+     * \return Rectangle&
+     */
+    const Rectangle intersected(const Rectangle& other) const;
 
 protected:
     std::ostream& stream_write(std::ostream&) const;
@@ -166,4 +270,7 @@ private:
     Point top_left;
     Point bottom_right;
 };
+
 }
+void testGragh();
+
