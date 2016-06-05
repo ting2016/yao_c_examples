@@ -11,7 +11,10 @@
 #include <iostream>
 #include <string>
 #include <hashtest.h>
+#include <map>
+#include "maptest.h"
 
-int main(){
-    testHash();
+int main()
+{
+    testMapKey();
 }

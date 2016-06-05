@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     functionpointer.cpp \
     definetest.cpp \
     singleton.cpp \
-    hashtest.cpp
+    hashtest.cpp \
+    maptest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -27,7 +28,8 @@ HEADERS += \
     definetest.h \
     version.h \
     singleton.h \
-    hashtest.h
+    hashtest.h \
+    maptest.h
 #    configurer/include/configurer.h
 
 

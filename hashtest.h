@@ -2,27 +2,27 @@
 #define HASH_H
 #include <string>
 #include <iostream>
-class HashObject{
+class HashKeyClass{
 private:
     std::string name;
     int age;
     bool gender;
 public:
-    HashObject(){}
-    HashObject(const std::string& name, int age, bool gender);
-    bool operator()(const HashObject& a, const HashObject& b) const;
-    bool operator==(const HashObject& b) const;
+    HashKeyClass(){}
+    HashKeyClass(const std::string& name, int age, bool gender);
+    bool operator()(const HashKeyClass& a, const HashKeyClass& b) const;
+    bool operator==(const HashKeyClass& b) const;
     std::size_t hashId() const;
-    friend std::ostream& operator<<(std::ostream& os, const HashObject& para);
-    friend struct std::hash<HashObject>;
+    friend std::ostream& operator<<(std::ostream& os, const HashKeyClass& para);
+    friend struct std::hash<HashKeyClass>;
     friend void testHash();
 };
 
 //namespace std
 //{
-//    template<> struct hash<HashObject>
+//    template<> struct hash<HashKeyClass>
 //    {
-//        std::size_t operator()(HashObject const& s) const
+//        std::size_t operator()(HashKeyClass const& s) const
 //        {
 //            auto h1 = std::hash<std::string>()(s.name);
 //            auto h2 = std::hash<int>()(s.age);
@@ -32,9 +32,9 @@ public:
 //}
 namespace std
 {
-    template<> struct hash<HashObject>
+    template<> struct hash<HashKeyClass>
     {
-        std::size_t operator()(HashObject const& s) const;
+        std::size_t operator()(HashKeyClass const& s) const;
     };
 }
 
