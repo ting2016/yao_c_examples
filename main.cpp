@@ -10,8 +10,8 @@
 #include "graphic.h"
 #include <iostream>
 #include <string>
-using namespace std;
+#include <hashtest.h>
 
 int main(){
-    testGragh();
+    testHash();
 }
