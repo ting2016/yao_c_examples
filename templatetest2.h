@@ -1,5 +1,5 @@
-#ifndef _TESTTEMP_H_
-#define _TESTTEMP_H_
+#ifndef _TEMPLATETEST2_
+#define _TEMPLATETEST2_
 template<class T>
 class TemplateTest2{
 public:

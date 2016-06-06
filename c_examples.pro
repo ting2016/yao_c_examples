@@ -29,7 +29,8 @@ HEADERS += \
     version.h \
     singleton.h \
     hashtest.h \
-    maptest.h
+    maptest.h \
+    fix_array.h
 #    configurer/include/configurer.h
 
 
