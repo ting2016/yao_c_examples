@@ -14,7 +14,9 @@ SOURCES += main.cpp \
     definetest.cpp \
     singleton.cpp \
     hashtest.cpp \
-    maptest.cpp
+    maptest.cpp \
+    threadtest.cpp \
+    functortest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -30,7 +32,9 @@ HEADERS += \
     singleton.h \
     hashtest.h \
     maptest.h \
-    fix_array.h
+    fix_array.h \
+    threadtest.h \
+    functortest.h
 #    configurer/include/configurer.h
 
-
+LIBS += -lpthread

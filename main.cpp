@@ -13,21 +13,11 @@
 #include <hashtest.h>
 #include <map>
 #include "maptest.h"
-
-
-class myFunctorClass
-{
-    public:
-        myFunctorClass (int x) : _x( x ) {}
-        int operator() (int y) { return _x + y; }
-    private:
-        int _x;
-};
+#include "functortest.h"
+#include "threadtest.h"
 
 int main()
 {
-    myFunctorClass addFive( 5 );
-    std::cout << addFive( 6 );
-
+    testThread();
     return 0;
 }
