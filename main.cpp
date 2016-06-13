@@ -16,9 +16,10 @@
 #include "functortest.h"
 #include "threadtest.h"
 #include "algorithmtest.h"
-
+#include "puretest.h"
 int main()
 {
-    testAlgorithm ();
+    testPure ();
+
     return 0;
 }
