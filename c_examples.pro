@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     functortest.cpp \
     algorithmtest.cpp \
     randomtest.cpp \
-    puretest.cpp
+    puretest.cpp \
+    chronotest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -40,7 +41,8 @@ HEADERS += \
     functortest.h \
     algorithmtest.h \
     randomtest.h \
-    puretest.h
+    puretest.h \
+    chronotest.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread

@@ -17,9 +17,10 @@
 #include "threadtest.h"
 #include "algorithmtest.h"
 #include "puretest.h"
+#include "chronotest.h"
 int main()
 {
-    testPure ();
+    testChrono ();
 
     return 0;
 }
