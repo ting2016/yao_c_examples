@@ -22,10 +22,10 @@ void thread_work(){
 
 
 void testThread(){
-    std::thread m_thread1(thread_work);
+//    std::thread m_thread1(thread_work);
 
-    ThreadClass1 threadObj;
-    std::thread m_thread2(threadObj);
-    m_thread1.join();
-    m_thread2.join();
+//    ThreadClass1 threadObj;
+//    std::thread m_thread2(threadObj);
+//    m_thread1.join();
+//    m_thread2.join();
 }

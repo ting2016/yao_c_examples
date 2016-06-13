@@ -15,9 +15,10 @@
 #include "maptest.h"
 #include "functortest.h"
 #include "threadtest.h"
+#include "algorithmtest.h"
 
 int main()
 {
-    testThread();
+    testAlgorithm ();
     return 0;
 }
