@@ -19,9 +19,10 @@
 #include "puretest.h"
 #include "chronotest.h"
 #include <unistd.h>
+#include "malicious.h"
 int main()
 {
-    testChrono ();
+    testMalicious ();
     return 0;
 }
 

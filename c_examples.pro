@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     algorithmtest.cpp \
     randomtest.cpp \
     puretest.cpp \
-    chronotest.cpp
+    chronotest.cpp \
+    malicious.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -42,7 +43,8 @@ HEADERS += \
     algorithmtest.h \
     randomtest.h \
     puretest.h \
-    chronotest.h
+    chronotest.h \
+    malicious.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread
