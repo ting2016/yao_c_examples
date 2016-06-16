@@ -13,4 +13,6 @@ public:
 
 void testPure();
 
+void testVector();
+
 #endif // PURETEST_H

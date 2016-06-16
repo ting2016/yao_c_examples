@@ -18,9 +18,10 @@
 #include "algorithmtest.h"
 #include "puretest.h"
 #include "chronotest.h"
+#include <unistd.h>
 int main()
 {
     testChrono ();
-
     return 0;
 }
+
