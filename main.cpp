@@ -20,9 +20,10 @@
 #include "chronotest.h"
 #include <unistd.h>
 #include "malicious.h"
+#include "lambdatest.h"
 int main()
 {
-    testMalicious ();
+    testLambda ();
     return 0;
 }
 

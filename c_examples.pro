@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     randomtest.cpp \
     puretest.cpp \
     chronotest.cpp \
-    malicious.cpp
+    malicious.cpp \
+    lambdatest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -44,7 +45,8 @@ HEADERS += \
     randomtest.h \
     puretest.h \
     chronotest.h \
-    malicious.h
+    malicious.h \
+    lambdatest.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread
