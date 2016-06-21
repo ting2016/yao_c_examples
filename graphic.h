@@ -3,11 +3,15 @@
 #include <vector>
 
 namespace yao_graph{
-
+class Graphic;
+class Point;
+class Circle;
+class Rectangle;
+}
 /*!
  * \brief Graphic is an abstract class for other graphical classes
  */
-class Graphic{
+class yao_graph::Graphic{
 public:
     /*!
      * \brief Graphic, default CTOR
@@ -54,7 +58,7 @@ protected:
  * \brief The Point class
  * contains int x and int y
  */
-class Point: public Graphic{
+class yao_graph::Point: public yao_graph::Graphic{
 public:
     /*!
      * \brief Point, default CTOR
@@ -113,7 +117,7 @@ private:
     int y;
 };
 
-class Circle : public Graphic{
+class yao_graph::Circle : public yao_graph::Graphic{
 public:
     /*!
      * \brief Circle, default CTOR
@@ -149,7 +153,7 @@ private:
     int dim;
 };
 
-class Rectangle: public Graphic{
+class yao_graph::Rectangle: public yao_graph::Graphic{
 public:
     /*!
      * \brief Rectangle, default CTOR
@@ -271,6 +275,6 @@ private:
     Point bottom_right;
 };
 
-}
+
 void testGragh();
 

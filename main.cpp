@@ -21,9 +21,16 @@
 #include <unistd.h>
 #include "malicious.h"
 #include "lambdatest.h"
+
+#include <yaostl.h>
 int main()
 {
-    testLambda ();
+    testGragh ();
+    testnmsp::Test2 t;
+    t.print ();
+    testnmsp::Test2 t2(100);
+    t2.print ();
+
     return 0;
 }
 

@@ -45,7 +45,6 @@ void Malicious::testPerformanceOfTraverseVector (){
     YaoTime t;
     for(auto elem: vec){
         elem++;
-        elem--;
     }
     std::cout << "iterator traverse vecter of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
 
@@ -53,20 +52,18 @@ void Malicious::testPerformanceOfTraverseVector (){
     int size = vec.size ();
     for(auto i = 0; i < size; i++){
         vec.at (i)++;
-        vec.at (i)--;
     }
     std::cout << "at(i) traverse vecter of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
 
     t.recordTime ();
     for(auto i = 0; i < size; i++){
         vec[i]++;
-        vec[i]--;
     }
     std::cout << "indices traverse vecter of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
 
-    char* p = new char[count];
-    char * pEnd = p + count;
-    char* q = p;
+    int* p = new int[count];
+    int * pEnd = p + count;
+    int* q = p;
 
     t.recordTime ();
     while(q < pEnd){
@@ -75,5 +72,17 @@ void Malicious::testPerformanceOfTraverseVector (){
     }
 
     std::cout << "pointer traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
+
+    t.recordTime ();
+
+    MyIterator from(p);
+    MyIterator until(p + size);
+    for (MyIterator it = from; it != until; it++){
+        (*it)++;
+//        (*it)--;
+    }
+
+    std::cout << "my iterator traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
+
     delete []p;
 }

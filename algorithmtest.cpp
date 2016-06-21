@@ -4,7 +4,7 @@
 #include <algorithm>
 
 void algoOutput(int i){
-    std::cout << i << std::endl;
+    std::cout << i << "\t";
 }
 
 void algoIncreace(int& i){
@@ -12,7 +12,7 @@ void algoIncreace(int& i){
 }
 
 void AlgorithmTest::operator()(int& i) const{
-    i++;
+    --i;
 }
 
 
@@ -23,7 +23,16 @@ void testAlgorithm(){
     }
     for_each(vec.cbegin (), vec.cend (), algoOutput);
 
+    std::cout << std::endl << "-----------------------" << std::endl;
+
+    for_each(vec.begin (), vec.end (), algoIncreace);
+
+    for_each(vec.cbegin (), vec.cend (), algoOutput);
+
+    std::cout << std::endl << "-----------------------" << std::endl;
+
     AlgorithmTest algorithmTestObj;
     for_each(vec.begin (), vec.end (), algorithmTestObj);
+
     for_each(vec.cbegin (), vec.cend (), algoOutput);
 }
