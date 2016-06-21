@@ -1,10 +1,12 @@
 #include "foo.h"
+
 #define Out std::cout
 #define End std::endl
+#define FOO Foo
 using F = Foo;
+typedef Foo Foooooooooooooo;
 
-
-F::Foo()
+FOO::FOO()
     :Foo(0){
     Out << "Default CTOR is called" << End;
 }
@@ -14,7 +16,7 @@ F::Foo(const int& v)
     Out << "CTOR(const int&) is called, v=" << v << End;
 }
 
-F::Foo(const Foo& other){
+Foooooooooooooo::Foo(const Foo& other){
     if(&other != this){
         this->v = other.v;
     }
@@ -42,5 +44,3 @@ void F::increaceValue(){
     v++;
     Out << __func__ << "is called" << End;
 }
-
-
