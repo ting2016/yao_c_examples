@@ -3,6 +3,7 @@
 #include <iostream>
 #include <chrono>
 #include <chronotest.h>
+#include <yaostl.h>
 Malicious::Malicious()
 {
 
@@ -26,20 +27,22 @@ void testMalicious(){
         std::cout << e.what () << std::endl;
     }
 
-    try{
-        malicious.noexceptTest ();
-    }catch(...){
-        std::cout << "Never can you see me..." << std::endl;
-    }
+//    try{
+//        malicious.noexceptTest ();
+//    }catch(...){
+//        std::cout << "Never can you see me..." << std::endl;
+//    }
 }
 
 
 
 void Malicious::testPerformanceOfTraverseVector (){
-    const int count = 100000000;
+    const int count = 10000000;
     std::vector<int> vec;
+    yaostl::SimpleVector<int> vec2;
     for(auto i = 0; i < count; i++){
         vec.push_back (i);
+        vec2.push_back (i);
     }
 
     YaoTime t;
@@ -47,6 +50,12 @@ void Malicious::testPerformanceOfTraverseVector (){
         elem++;
     }
     std::cout << "iterator traverse vecter of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
+
+    t.recordTime ();
+    for(auto elem: vec2){
+        elem++;
+    }
+    std::cout << "iterator traverse vecter2 of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
 
     t.recordTime ();
     int size = vec.size ();
@@ -70,7 +79,6 @@ void Malicious::testPerformanceOfTraverseVector (){
         ++(*q);
         q++;
     }
-
     std::cout << "pointer traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
 
     t.recordTime ();
@@ -79,9 +87,7 @@ void Malicious::testPerformanceOfTraverseVector (){
     MyIterator until(p + size);
     for (MyIterator it = from; it != until; it++){
         (*it)++;
-//        (*it)--;
     }
-
     std::cout << "my iterator traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
 
     delete []p;

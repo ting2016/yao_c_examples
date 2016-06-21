@@ -23,14 +23,14 @@
 #include "lambdatest.h"
 
 #include <yaostl.h>
+#include "foo.h"
+
+
 int main()
 {
-    testGragh ();
-    testnmsp::Test2 t;
-    t.print ();
-    testnmsp::Test2 t2(100);
-    t2.print ();
-
+    testMalicious ();
+//    testYaoStl ();
+    std::cout << "Finished" << std::endl;
     return 0;
 }
 
