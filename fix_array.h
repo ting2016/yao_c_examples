@@ -44,7 +44,7 @@ class fixed_array
                 typedef std::forward_iterator_tag iterator_category;
                 const_iterator(pointer ptr) : ptr_(ptr) { }
                 self_type operator++() { self_type i = *this; ptr_++; return i; }
-                self_type operator++(int junk) { ptr_++; return *this; }
+                self_type operator++(int) { ptr_++; return *this; }
                 const reference operator*() { return *ptr_; }
                 const reference operator->() { return ptr_; }
                 bool operator==(const self_type& rhs) { return ptr_ == rhs.ptr_; }

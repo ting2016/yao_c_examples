@@ -1,13 +1,15 @@
 #include "yaostl.h"
+#include <vector>
 
 #include "foo.h"
 void testYaoStl(){
     yaostl::SimpleVector<Foo> vec;
-    for(auto i = 1; i < 10000; i++){
+//    std::vector<Foo> vec;
+    for(auto i = 1; i <= 1; i++){
         vec.push_back(Foo(i));
     }
 
-    for(auto e: vec){
-        e.bar();
-    }
+//    for(auto e: vec){
+//        e.bar();
+//    }
 }

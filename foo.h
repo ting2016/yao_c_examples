@@ -13,6 +13,12 @@ public:
     ~Foo();
 private:
     int v;
+
+    friend inline std::ostream& operator<<(std::ostream& os, const Foo& obj);
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Foo& obj){
+    return os << "foo:" << obj.v;
+}
 
 #endif // FOO_H

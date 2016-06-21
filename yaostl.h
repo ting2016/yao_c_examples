@@ -2,6 +2,7 @@
 #define YAOSTL_H
 #include <iterator>
 #include <cassert>
+#include <iostream>
 namespace yaostl{
 template <typename T>
 class SimpleVector;
@@ -11,51 +12,51 @@ class SimpleVector;
 template <typename T>
 class yaostl::SimpleVector{
 public:
-    typedef int size_type;
     class iterator
     {
         public:
-            typedef iterator self_type;
-            typedef T value_type;
-            typedef T& reference;
-            typedef T* pointer;
-            typedef std::forward_iterator_tag iterator_category;
-            typedef int difference_type;
-            iterator(pointer ptr) : m_ptr(ptr) { }
-            self_type operator++() { self_type i = *this; m_ptr++; return i; }
-            self_type operator++(int junk) { m_ptr++; return *this; }
-            reference operator*() { return *m_ptr; }
-            pointer operator->() { return m_ptr; }
-            bool operator==(const self_type& rhs) { return m_ptr == rhs.m_ptr; }
-            bool operator!=(const self_type& rhs) { return m_ptr != rhs.m_ptr; }
+            iterator(T* ptr) : m_ptr(ptr) { }
+            iterator operator++() { iterator i = *this; m_ptr = *(&m_ptr + 1); return i; }
+            iterator operator++(int) { m_ptr = *(&m_ptr + 1); return *this; }
+            T& operator*() { return *m_ptr; }
+            T* operator->() { return m_ptr; }
+            bool operator==(const iterator& rhs) { return m_ptr == rhs.m_ptr; }
+            bool operator!=(const iterator& rhs) { return m_ptr != rhs.m_ptr; }
             private:
-            pointer m_ptr;
+            T* m_ptr;
     };
 
     SimpleVector();
-    SimpleVector(size_type size);
+    SimpleVector(int size);
     ~SimpleVector();
-    inline T& operator[](size_type index);
-    inline size_type size() const { return m_size; }
-    inline iterator begin(){return iterator(m_data);}
-    inline iterator end(){return iterator(m_data + m_size);}
+    inline T& operator[](int index);
+    inline int size() const { return m_size; }
+    inline iterator begin(){return iterator(*m_data);}
+    inline iterator end(){return iterator(*(m_data + m_size));}
     inline void push_back(const T& e){
-        if(m_size == m_capacity){
-            m_capacity = m_size * 2 + 1;
-            T* tmp_data = new T[m_capacity];
-            std::copy(m_data, m_data + m_size, tmp_data);
-            if(m_size > 0){
-                delete[]m_data;
-            }
-            m_data = tmp_data;
+        std::cout << __func__ << " vector size: " << m_size << std::endl;
+        if(m_size > m_capacity){
+            resize ();
         }
-        end() = new T(e);
+
+        T* t = new T(e);
+        std::cout << __func__ << " add element(addr):" << t << " to position: " << m_size + 1 << std::endl;
+        m_data[m_size++] = t;
     }
 
+    void print(){
+        for(auto i = 0; i < m_size; i++){
+            std::cout << "element " << i << " addr: " << m_data[i] << "elem:" << *m_data[i] << std::endl;
+        }
+    }
+
+    inline void resize();
+private:
+
 protected:
-    T* m_data;
-    size_type m_size;
-    size_type m_capacity;
+    T** m_data;
+    int m_size;
+    int m_capacity;
 };
 
 template <typename T>
@@ -65,24 +66,36 @@ yaostl::SimpleVector<T>::SimpleVector()
 
 
 template <typename T>
-inline T& yaostl::SimpleVector<T>::operator[](size_type index){
+inline T& yaostl::SimpleVector<T>::operator[](int index){
     assert(index < m_size);
-    return m_data[index];
+    return *m_data[index];
 }
 
 template <typename T>
 yaostl::SimpleVector<T>::~SimpleVector(){
-    if(m_size > 0){
-        delete []m_data;
+    for(auto i = 0; i < m_size; i++){
+        delete m_data[i];
     }
+    delete m_data;
 }
 
 template <typename T>
-yaostl::SimpleVector<T>::SimpleVector(size_type size) : m_size(size) {
+yaostl::SimpleVector<T>::SimpleVector(int size) : m_size(size) {
     assert(size >= 0);
     m_capacity = m_size * 2 + 1;
-    m_data = new T[m_size];
+    m_data = new T*[m_capacity];
 }
+
+template <typename T>
+inline void yaostl::SimpleVector<T>::resize(){
+    std::cout << "before resize, m_capacity:" << m_capacity << std::endl;
+    m_capacity *= 2;
+    T** t = new T*[m_capacity];
+    std::copy(m_data, m_data + m_size, t);
+    delete m_data;
+    m_data = t;
+}
+
 void testYaoStl();
 
 #endif // YAOSTL_H

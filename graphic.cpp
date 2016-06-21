@@ -1,9 +1,9 @@
 #include "graphic.h"
 #include <iostream>
+#include <string>
 using namespace yao_graph;
 
 Graphic::Graphic(){
-
 }
 
 Graphic::~Graphic(){

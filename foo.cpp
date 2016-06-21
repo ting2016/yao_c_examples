@@ -1,40 +1,46 @@
 #include "foo.h"
+#define Out std::cout
+#define End std::endl
+using F = Foo;
 
-Foo::Foo()
+
+F::Foo()
     :Foo(0){
-    std::cout << "Default CTOR is called" << std::endl;
+    Out << "Default CTOR is called" << End;
 }
 
-Foo::Foo(const int& v)
+F::Foo(const int& v)
     :v(v){
-    std::cout << "CTOR(const int&) is called, v=" << v << std::endl;
+    Out << "CTOR(const int&) is called, v=" << v << End;
 }
 
-Foo::Foo(const Foo& other){
+F::Foo(const Foo& other){
     if(&other != this){
         this->v = other.v;
     }
-    std::cout << "Copy CTOR is called" << std::endl;
+    Out << "Copy CTOR is called" << End;
 }
 
-Foo& Foo::operator =(const Foo& other){
+Foo& F::operator =(const Foo& other){
     if(&other != this){
         this->v = other.v;
     }
-    std::cout << "Assign CTOR is called" << std::endl;
+    Out << "Assign CTOR is called" << End;
     return *this;
 }
 
-Foo::~Foo(){
-    std::cout << "DTOR is called" << std::endl;
+F::~Foo(){
+    Out << "DTOR is called" << End;
 }
 
-void Foo::bar () const{
-    std::cout << __func__ << " say: my value is " << v << std::endl;
+void F::bar () const{
+    Out << "\t\t" << __func__ << " say: my value is " << v << End;
 }
 
 
-void Foo::increaceValue(){
+void F::increaceValue(){
     v++;
-    std::cout << __func__ << "is called" << std::endl;
+    Out << __func__ << "is called" << End;
 }
+
+
