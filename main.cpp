@@ -28,20 +28,35 @@
 
 int main()
 {
-    yaostl::SimpleVector<Foo> vec;
-    for(auto i = 0; i < 10; i++){
-        vec.push_back (Foo(i));
+
+    {
+        yaostl::SimpleVector<Foo> vec;
+        for(auto i = 0; i < 1; i++){
+            vec.push_back (Foo(i));
+        }
+
+        std::cout << std::endl << std::endl;
+
+        for(auto v: vec){
+            std::cout << v << std::endl;
+        }
+    }
+    std::cout << "---------------\n" << std::endl;
+    {
+        std::vector<Foo> vec2;
+        for(auto i = 0; i < 1; i++){
+            vec2.push_back (Foo(i));
+        }
+
+        std::cout << std::endl << std::endl;
+
+        for(auto v: vec2){
+            std::cout << v << std::endl;
+        }
     }
 
-    std::cout << vec.size () << "---------------\n" << std::endl;
-    vec.print ();
-    int x;
-    std::cin >> x;
-    for(auto v: vec){
-        std::cout << v << std::endl;
-    }
 
-    std::cin >> x;
+//    std::cin >> x;
     //testMalicious ();
 //    testYaoStl ();
     std::cout << "Finished" << std::endl;

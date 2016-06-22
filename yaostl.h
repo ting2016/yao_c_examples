@@ -15,15 +15,16 @@ public:
     class iterator
     {
         public:
-            iterator(T* ptr) : m_ptr(ptr) { }
-            iterator operator++() { iterator i = *this; m_ptr = *(&m_ptr + 1); return i; }
-            iterator operator++(int) { m_ptr = *(&m_ptr + 1); return *this; }
-            T& operator*() { return *m_ptr; }
-            T* operator->() { return m_ptr; }
+            iterator(T** ptr) : m_ptr(ptr){ }
+            iterator operator++() { iterator i = *this; m_ptr++; return i; }
+            iterator operator++(int) { m_ptr++; return *this; }
+
+            T& operator*() { return **m_ptr; }
+            T* operator->() { return *m_ptr; }
             bool operator==(const iterator& rhs) { return m_ptr == rhs.m_ptr; }
             bool operator!=(const iterator& rhs) { return m_ptr != rhs.m_ptr; }
             private:
-            T* m_ptr;
+            T** m_ptr;
     };
 
     SimpleVector();
@@ -31,24 +32,9 @@ public:
     ~SimpleVector();
     inline T& operator[](int index);
     inline int size() const { return m_size; }
-    inline iterator begin(){return iterator(*m_data);}
-    inline iterator end(){return iterator(*(m_data + m_size));}
-    inline void push_back(const T& e){
-        std::cout << __func__ << " vector size: " << m_size << std::endl;
-        if(m_size > m_capacity){
-            resize ();
-        }
-
-        T* t = new T(e);
-        std::cout << __func__ << " add element(addr):" << t << " to position: " << m_size + 1 << std::endl;
-        m_data[m_size++] = t;
-    }
-
-    void print(){
-        for(auto i = 0; i < m_size; i++){
-            std::cout << "element " << i << " addr: " << m_data[i] << "elem:" << *m_data[i] << std::endl;
-        }
-    }
+    inline iterator begin(){return iterator(m_data);}
+    inline iterator end(){return iterator(m_data + m_size);}
+    inline void push_back(const T& e);
 
     inline void resize();
 private:
@@ -94,6 +80,16 @@ inline void yaostl::SimpleVector<T>::resize(){
     std::copy(m_data, m_data + m_size, t);
     delete m_data;
     m_data = t;
+}
+
+template <typename T>
+inline void yaostl::SimpleVector<T>::push_back(const T& e){
+    if(m_size > m_capacity){
+        resize ();
+    }
+
+    T* t = new T(e);
+    m_data[m_size++] = t;
 }
 
 void testYaoStl();
