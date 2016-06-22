@@ -37,7 +37,7 @@ void testMalicious(){
 
 
 void Malicious::testPerformanceOfTraverseVector (){
-    const int count = 10000000;
+    const int count = 100000000;
     std::vector<int> vec;
     yaostl::SimpleVector<int> vec2;
     for(auto i = 0; i < count; i++){
@@ -55,7 +55,7 @@ void Malicious::testPerformanceOfTraverseVector (){
     for(auto elem: vec2){
         elem++;
     }
-    std::cout << "iterator traverse vecter2 of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
+    std::cout << "iterator traverse yao vecter of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
 
     t.recordTime ();
     int size = vec.size ();
@@ -75,8 +75,8 @@ void Malicious::testPerformanceOfTraverseVector (){
     int* q = p;
 
     t.recordTime ();
-    while(q < pEnd){
-        ++(*q);
+    while(q != pEnd){
+        (*q)++;
         q++;
     }
     std::cout << "pointer traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
