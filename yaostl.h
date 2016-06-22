@@ -4,14 +4,14 @@
 #include <cassert>
 #include <iostream>
 #include <algorithm>
-namespace yaostl{
+namespace yao_stl{
 template <typename T>
 class SimpleVector;
 }
 
 
 template <typename T>
-class yaostl::SimpleVector{
+class yao_stl::SimpleVector{
 public:
     class iterator
     {
@@ -50,19 +50,19 @@ protected:
 };
 
 template <typename T>
-yaostl::SimpleVector<T>::SimpleVector()
+yao_stl::SimpleVector<T>::SimpleVector()
     : SimpleVector(0){
 }
 
 
 template <typename T>
-inline T& yaostl::SimpleVector<T>::operator[](int index){
+inline T& yao_stl::SimpleVector<T>::operator[](int index){
     assert(index < m_size);
     return *m_data[index];
 }
 
 template <typename T>
-yaostl::SimpleVector<T>::~SimpleVector(){
+yao_stl::SimpleVector<T>::~SimpleVector(){
     for(auto i = 0; i < m_size; i++){
         delete m_data[i];
     }
@@ -70,14 +70,14 @@ yaostl::SimpleVector<T>::~SimpleVector(){
 }
 
 template <typename T>
-yaostl::SimpleVector<T>::SimpleVector(int size) : m_size(size) {
+yao_stl::SimpleVector<T>::SimpleVector(int size) : m_size(size) {
     assert(size >= 0);
     m_capacity = m_size * 2 + 1;
     m_data = new T*[m_capacity];
 }
 
 template <typename T>
-inline void yaostl::SimpleVector<T>::resize(){
+inline void yao_stl::SimpleVector<T>::resize(){
     //    std::cout << "before resize, m_capacity:" << m_capacity << std::endl;
     m_capacity *= 2;
     T** t = new T*[m_capacity];
@@ -87,7 +87,7 @@ inline void yaostl::SimpleVector<T>::resize(){
 }
 
 template <typename T>
-inline void yaostl::SimpleVector<T>::push_back(const T& e){
+inline void yao_stl::SimpleVector<T>::push_back(const T& e){
     if(m_size > m_capacity){
         resize ();
     }

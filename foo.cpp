@@ -44,3 +44,7 @@ void F::increaceValue(){
     v++;
     Out << __func__ << "is called" << End;
 }
+
+std::ostream& operator<<(std::ostream& os, const Foo& obj){
+    return os << "foo:" << obj.v;
+}

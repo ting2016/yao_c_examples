@@ -1,51 +1,24 @@
 #include "malicious.h"
 #include <vector>
 #include <iostream>
-#include <chrono>
 #include <chronotest.h>
 #include <yaostl.h>
-Malicious::Malicious()
-{
+#include "foo.h"
 
+void yao_malicious::test (){
+    testPerformanceOfTraverseVector ();
 }
 
-void Malicious::noexceptTest() const noexcept{
-    throw YaoException("noexcept function should never throw exceptions. This will lead to crash...");
-}
-
-void Malicious::exceptionThrowableTest() const{
-    throw YaoException("This exception can be caught...");
-}
-
-
-void testMalicious(){
-    Malicious malicious;
-    malicious.testPerformanceOfTraverseVector ();
-    try{
-        malicious.exceptionThrowableTest ();
-    }catch(std::exception &e){
-        std::cout << e.what () << std::endl;
-    }
-
-//    try{
-//        malicious.noexceptTest ();
-//    }catch(...){
-//        std::cout << "Never can you see me..." << std::endl;
-//    }
-}
-
-
-
-void Malicious::testPerformanceOfTraverseVector (){
+void yao_malicious::testPerformanceOfTraverseVector (){
     const int count = 100000000;
     std::vector<int> vec;
-    yaostl::SimpleVector<int> vec2;
+    yao_stl::SimpleVector<int> vec2;
     for(auto i = 0; i < count; i++){
         vec.push_back (i);
         vec2.push_back (i);
     }
 
-    YaoTime t;
+    yao_chrono::YaoTime t;
     for(auto elem: vec){
         elem++;
     }
@@ -80,15 +53,45 @@ void Malicious::testPerformanceOfTraverseVector (){
         q++;
     }
     std::cout << "pointer traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
-
-    t.recordTime ();
-
-    MyIterator from(p);
-    MyIterator until(p + size);
-    for (MyIterator it = from; it != until; it++){
-        (*it)++;
-    }
-    std::cout << "my iterator traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
-
     delete []p;
+}
+
+void yao_malicious::testVectorTraverse(){
+    std::vector<Foo> vec;
+    for(auto i = 0; i < 10; i++){
+        vec.push_back (Foo(i + 1));
+    }
+
+    //indices visit
+    for(size_t /*auto*/ i = 0; i < vec.size (); i++){
+        std::cout << vec[i] << std::endl;
+        //std::cout << vec.at (i) << std::endl;
+    }
+
+    //iterator 1
+    for(std::vector<Foo>::iterator it = vec.begin (); it != vec.end (); it++){
+        std::cout << *it << std::endl;
+    }
+
+    //iterator 2
+    for(auto it = vec.begin (); it != vec.end (); it++){
+        std::cout << *it << std::endl;
+    }
+
+    //range-for loop 1 (get object copy)
+    for(auto v: vec){
+        std::cout << v << std::endl;
+    }
+
+    //Highly encourged
+    //range-for loop 1 (get object ref)
+    for (auto& v: vec) {
+        std::cout << v << std::endl;
+    }
+
+    //Highly encourged
+    //lambda visit
+    std::for_each(vec.begin(), vec.end(), [](Foo const& elem) {
+         std::cout << elem << std::endl;
+    });
 }

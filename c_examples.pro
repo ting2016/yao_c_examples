@@ -24,7 +24,9 @@ SOURCES += main.cpp \
     malicious.cpp \
     lambdatest.cpp \
     foo.cpp \
-    yaostl.cpp
+    yaostl.cpp \
+    exceptiontest.cpp \
+    bar.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += \
@@ -50,7 +52,9 @@ HEADERS += \
     malicious.h \
     lambdatest.h \
     yaostl.h \
-    foo.h
+    foo.h \
+    exceptiontest.h \
+    bar.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread

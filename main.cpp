@@ -24,11 +24,13 @@
 
 #include <yaostl.h>
 #include "foo.h"
-
+#include "bar.h"
 
 int main()
 {
-    testMalicious ();
+    yao_bar::Bar bar(20);
+    std::cout << bar << std::endl;
+
     std::cout << "Finished" << std::endl;
     return 0;
 }
