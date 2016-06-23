@@ -192,6 +192,4 @@ class yao::stl::SimpleArray
         size_type size_;
 };
 
-void testYaoStl();
-
 #endif // YAOSTL_H

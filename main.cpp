@@ -21,10 +21,12 @@
 #include "malicious.h"
 #include "lambdatest.h"
 
-#include <yaostl.h>
+#include <stltest.h>
 #include "foo.h"
 #include "bar.h"
 
+using namespace std;
+using namespace yao;
 int main()
 {
     yao::version::test ();

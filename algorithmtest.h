@@ -6,14 +6,13 @@ namespace yao{
         void algoOutput(int i);
         void algoIncreace(int& i);
         void test();
+
+        class Algorithm
+        {
+        public:
+            void operator()(int&) const;
+        };
     }
 }
-
-class yao::algorithm::Algorithm
-{
-public:
-    void operator()(int&) const;
-
-};
 
 #endif // ALGORITHMTEST_H

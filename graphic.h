@@ -8,6 +8,7 @@ namespace yao{
         class Point;
         class Circle;
         class Rectangle;
+        void testGragh();
     }
 }
 /*!
@@ -278,5 +279,5 @@ private:
 };
 
 
-void testGragh();
+
 

@@ -191,7 +191,7 @@ std::ostream& Rectangle::stream_write(std::ostream& os) const{
     return os << "top_left:" << top_left << "; bootom_right:" << bottom_right;
 }
 
-void testGragh(){
+void yao::graph::testGragh(){
     Graphic *g[3];
     g[0] = new Point(10, 10);
     g[1] = new Circle(Point(100, 100), 100);
