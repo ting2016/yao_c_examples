@@ -1,11 +1,11 @@
 #include "version.h"
 #include <iostream>
-const std::string Version::version(){
+const std::string yao::version::VersionGenerator::version(){
     std::stringstream s;
-    s << "VERSION: " << __DATE__ << " " << __TIME__;
+    s << "VERSION:" << __DATE__ << "_" << __TIME__;
     return s.str();
 }
 
-void testVersion(){
-    std::cout << Version::version() << std::endl;
+void yao::version::test(){
+    std::cout << VersionGenerator::version() << std::endl;
 }

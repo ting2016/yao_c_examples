@@ -27,11 +27,7 @@
 
 int main()
 {
-    testTemplate1 ();
-    int a1 = 22, b1 = 33;
-    TemplateTest1<int> tmpl(a1, b1);
-    std::cout << "max(" << a1 << "," << b1 << "):" << tmpl.getmax() << std::endl;
-
+    yao::version::test ();
     std::cout << "Finished" << std::endl;
     return 0;
 }

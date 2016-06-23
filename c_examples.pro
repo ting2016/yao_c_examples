@@ -11,6 +11,7 @@ SOURCES += main.cpp \
     graphic.cpp \
     functionpointer.cpp \
     definetest.cpp \
+    version.cpp \
     singleton.cpp \
     hashtest.cpp \
     maptest.cpp \

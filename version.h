@@ -3,12 +3,16 @@
 
 #include <sstream>
 #include <string>
+namespace yao{
+    namespace version{
+        class VersionGenerator;
+        void test();
+    }
+}
 
-class Version{
+class yao::version::VersionGenerator{
 public:
     static const std::string version();
 };
-
-void testVersion();
 
 #endif // VERSION_H
