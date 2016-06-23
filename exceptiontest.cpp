@@ -1,6 +1,6 @@
 #include "exceptiontest.h"
 #include <iostream>
-using namespace yao_exception;
+using namespace yao::exception_ex;
 NonExceptTest::NonExceptTest(){
 }
 
@@ -12,7 +12,7 @@ void NonExceptTest::exceptionThrowableTest() const{
     throw UserException("This exception can be caught...");
 }
 
-void yao_exception::test(){
+void yao::exception_ex::test(){
     NonExceptTest obj;
     try{
         obj.exceptionThrowableTest ();

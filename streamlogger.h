@@ -3,7 +3,13 @@
 #include <fstream>
 #include <iostream>
 
-class StreamLogger{
+namespace yao{
+    namespace stream_logger{
+        class StreamLogger;
+        void test();
+    }
+}
+class yao::stream_logger::StreamLogger{
 private:
     std::ofstream log;
 public:
@@ -52,4 +58,3 @@ public:
     }
 };
 
-void testStreamLogger();

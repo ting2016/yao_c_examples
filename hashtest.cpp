@@ -3,13 +3,13 @@
 #include <iostream>
 #include <unordered_map>
 
-HashKeyClass::HashKeyClass(const std::string& name, int age, bool gender)
+yao::hash_ex::HashKeyClass::HashKeyClass(const std::string& name, int age, bool gender)
     : name(name)
     , age(age)
     , gender(gender){
 }
 
-bool HashKeyClass::operator()(const HashKeyClass& a, const HashKeyClass& b) const {
+bool yao::hash_ex::HashKeyClass::operator()(const HashKeyClass& a, const HashKeyClass& b) const {
     if(&a == &b)
         return true;
 
@@ -25,7 +25,7 @@ bool HashKeyClass::operator()(const HashKeyClass& a, const HashKeyClass& b) cons
     return true;
 }
 
-bool HashKeyClass::operator==(const HashKeyClass& b) const{
+bool yao::hash_ex::HashKeyClass::operator==(const HashKeyClass& b) const{
     if(this == &b)
         return true;
 
@@ -43,7 +43,7 @@ bool HashKeyClass::operator==(const HashKeyClass& b) const{
 
 
 
-std::size_t HashKeyClass::hashId() const{
+std::size_t yao::hash_ex::HashKeyClass::hashId() const{
 //    std::hash<std::string> ptr_hash;
 //    std::cout << ptr_hash(name) << std::endl;
 //    std::cout << std::hash<std::string>()(name) << std::endl;
@@ -59,11 +59,9 @@ std::size_t HashKeyClass::hashId() const{
 }
 
 
-std::ostream& operator<<(std::ostream& os, const HashKeyClass& stud){
-    return os << stud.name << ", " << stud.age;
-}
 
-std::size_t std::hash<HashKeyClass>::operator()(HashKeyClass const& s) const{
+
+std::size_t std::hash<yao::hash_ex::HashKeyClass>::operator()(yao::hash_ex::HashKeyClass const& s) const{
     auto h1 = std::hash<std::string>()(s.name);
     auto h2 = std::hash<int>()(s.age);
     auto h3 = std::hash<bool>()(s.gender);
@@ -71,7 +69,7 @@ std::size_t std::hash<HashKeyClass>::operator()(HashKeyClass const& s) const{
 }
 
 
-void testHash(){
+void yao::hash_ex::testHash(){
     HashKeyClass obj1("zhangsan", 22, true);
     HashKeyClass obj2("lisi", 23, false);
     std::unordered_map<std::string, HashKeyClass> map1;

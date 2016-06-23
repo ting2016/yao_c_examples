@@ -2,7 +2,14 @@
 #define HASH_H
 #include <string>
 #include <iostream>
-class HashKeyClass{
+
+namespace yao{
+    namespace hash_ex {
+        class HashKeyClass;
+        void testHash();
+    }
+}
+class yao::hash_ex::HashKeyClass{
 private:
     std::string name;
     int age;
@@ -13,30 +20,32 @@ public:
     bool operator()(const HashKeyClass& a, const HashKeyClass& b) const;
     bool operator==(const HashKeyClass& b) const;
     std::size_t hashId() const;
-    friend std::ostream& operator<<(std::ostream& os, const HashKeyClass& para);
+    friend inline std::ostream& operator<<(std::ostream& os, const HashKeyClass& obj){
+        return os << obj.name << ", " << obj.age;
+    }
+
     friend struct std::hash<HashKeyClass>;
     friend void testHash();
 };
 
-//namespace std
-//{
-//    template<> struct hash<HashKeyClass>
-//    {
-//        std::size_t operator()(HashKeyClass const& s) const
-//        {
-//            auto h1 = std::hash<std::string>()(s.name);
-//            auto h2 = std::hash<int>()(s.age);
-//            return h1 ^ (h2 << 1); // or use boost::hash_combine
-//        }
-//    };
-//}
+
 namespace std
 {
-    template<> struct hash<HashKeyClass>
+    template<> struct hash<yao::hash_ex::HashKeyClass>
     {
-        std::size_t operator()(HashKeyClass const& s) const;
+        std::size_t operator()(yao::hash_ex::HashKeyClass const& s) const;
     };
+
+    //    template<> struct hash<HashKeyClass>
+    //    {
+    //        std::size_t operator()(HashKeyClass const& s) const
+    //        {
+    //            auto h1 = std::hash<std::string>()(s.name);
+    //            auto h2 = std::hash<int>()(s.age);
+    //            return h1 ^ (h2 << 1); // or use boost::hash_combine
+    //        }
+    //    };
 }
 
-void testHash();
+
 #endif // HASH_H

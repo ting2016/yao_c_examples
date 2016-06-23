@@ -1,6 +1,6 @@
 #include "functortest.h"
 
-void testFunctor(){
-    myFunctorClass addFive( 5 );
+void yao::functor_ex::test(){
+    Functor addFive( 5 );
     std::cout << addFive( 6 ) << std::endl;
 }

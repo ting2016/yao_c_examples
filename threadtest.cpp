@@ -1,10 +1,6 @@
 #include "threadtest.h"
 
-
-ThreadClass1::ThreadClass1()
-{
-}
-
+using namespace yao::thread_ex;
 void ThreadClass1::operator()() const{
     for(auto i = 1; i < 10; i++){
         std::cout << __func__ << " will sleep 1 second" << std::endl;

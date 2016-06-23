@@ -3,15 +3,19 @@
 #include <chrono>
 #include <thread>
 #include <iostream>
-class ThreadClass1
+namespace yao{
+    namespace thread_ex{
+        class ThreadClass1;
+        void thread_work();
+        void testThread();
+    }
+}
+class yao::thread_ex::ThreadClass1
 {
 public:
-    ThreadClass1();
+    ThreadClass1(){}
     void operator()() const;
 };
 
-void thread_work();
-
-void testThread();
 
 #endif // THREADTEST_H

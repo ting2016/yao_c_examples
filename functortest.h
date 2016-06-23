@@ -2,15 +2,20 @@
 #define FUNCTORTEST_H
 
 #include <iostream>
-class myFunctorClass
+namespace yao{
+    namespace functor_ex{
+        class Functor;
+        void test();
+    }
+}
+class yao::functor_ex::Functor
 {
     public:
-        myFunctorClass (int x) : _x( x ) {}
+        Functor (int x) : _x( x ) {}
         int operator() (int y) { return _x + y; }
     private:
         int _x;
 };
 
-void testFunctor();
 
 #endif // FUNCTORTEST_H

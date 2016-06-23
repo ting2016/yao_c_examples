@@ -1,8 +1,14 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
-#include <iostream>
 #include <string>
-class SingletonBase
+namespace yao{
+    namespace singleton{
+        class SingletonBase;
+        class SingletonDerived;
+        void test();
+    }
+}
+class yao::singleton::SingletonBase
 {
 public:
     static SingletonBase& instance();
@@ -22,7 +28,7 @@ private:
     std::string className;
 };
 
-class SingletonDerived:public SingletonBase{
+class yao::singleton::SingletonDerived:public yao::singleton::SingletonBase{
 public:
     static SingletonDerived& instance();
     static SingletonDerived* instancePoint();
@@ -39,6 +45,5 @@ private:
     std::string className;
 };
 
-void testSingleton();
 
 #endif // SINGLETON_H

@@ -3,20 +3,21 @@
 #include <iostream>
 #include <algorithm>
 
-void algoOutput(int i){
+
+void yao::algorithm::algoOutput(int i){
     std::cout << i << "\t";
 }
 
-void algoIncreace(int& i){
+void yao::algorithm::algoIncreace(int& i){
     i++;
 }
 
-void AlgorithmTest::operator()(int& i) const{
+void yao::algorithm::Algorithm::operator()(int& i) const{
     --i;
 }
 
 
-void testAlgorithm(){
+void yao::algorithm::test(){
     std::vector <int> vec;
     for(auto i = 10; i <= 100; i += 10){
         vec.push_back (i);
@@ -31,7 +32,7 @@ void testAlgorithm(){
 
     std::cout << std::endl << "-----------------------" << std::endl;
 
-    AlgorithmTest algorithmTestObj;
+    Algorithm algorithmTestObj;
     for_each(vec.begin (), vec.end (), algorithmTestObj);
 
     for_each(vec.cbegin (), vec.cend (), algoOutput);

@@ -8,11 +8,13 @@
 #include <chrono>  // chrono::system_clock
 #include <iomanip> // put_time
 
-namespace yao_chrono{
-class YaoTime;
-void test();
+namespace yao{
+    namespace chrono{
+        class YaoTime;
+        void test();
+    }
 }
-class yao_chrono::YaoTime{
+class yao::chrono::YaoTime{
 public:
     typedef std::chrono::duration<int64_t, std::ratio<3600*24, 1>>   days;
     YaoTime();

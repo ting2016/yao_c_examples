@@ -1,8 +1,15 @@
 #pragma once
 #include <iostream>
-class VariadicParameters{
+
+namespace yao{
+    namespace variadic{
+        class VariadicParameters;
+        void test();
+    }
+}
+class yao::variadic::VariadicParameters{
 public:
-    VariadicParameters();
+    VariadicParameters(){}
     template<typename FIRST_PARA, typename... PARAS>
     void expand(FIRST_PARA firstPara, PARAS... paras);
 
@@ -11,9 +18,8 @@ private:
 };
 
 template<typename FIRST_PARA, typename... PARAS>
-void VariadicParameters::expand(FIRST_PARA firstPara, PARAS... paras){
+void yao::variadic::VariadicParameters::expand(FIRST_PARA firstPara, PARAS... paras){
     std::cout << firstPara;
     expand(paras...);
 }
 
-void testVariadicParameters();

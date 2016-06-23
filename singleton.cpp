@@ -1,8 +1,9 @@
 #include "singleton.h"
-
+#include <iostream>
+using namespace yao::singleton;
 SingletonBase::SingletonBase():
     id(0),
-className("SingletonBase"){
+    className("SingletonBase"){
     std::cout << className << "::" << __func__ << " is called" << std::endl;
 }
 
@@ -40,13 +41,13 @@ void SingletonDerived::setValue(int v){
 }
 
 void SingletonDerived::bar(){
-        std::cout << className << "::" << __func__ << " say hi" << std::endl;
-        std::cout << "\t id:" << id << " , value:" << value << std::endl;
+    std::cout << className << "::" << __func__ << " say hi" << std::endl;
+    std::cout << "\t id:" << id << " , value:" << value << std::endl;
 }
 
 SingletonDerived::SingletonDerived():
     value(0),
-className("SingletonDerived"){
+    className("SingletonDerived"){
 
 }
 
@@ -65,7 +66,7 @@ SingletonDerived::~SingletonDerived(){
     std::cout << className << "::" << __func__ << " is called" << std::endl;
 }
 
-void testSingleton(){
+void yao::singleton::test(){
     SingletonBase::instance().bar();
     SingletonBase::instance().setId(100);
     SingletonBase* pSingleBase = SingletonBase::instancePoint();

@@ -1,7 +1,8 @@
 #include "definetest.h"
 #include <iostream>
 using namespace std;
-void testDefine(){
+
+void yao::define_ex::test(){
     cout << MAX(23 + 20, MAX(32, 79)) << endl;
     int T_1 = 100, T_2 = 200, T_3 = 300;
     cout << A(1) << endl;

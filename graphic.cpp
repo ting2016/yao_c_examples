@@ -1,7 +1,7 @@
 #include "graphic.h"
 #include <iostream>
 #include <string>
-using namespace yao_graph;
+using namespace yao::graph;
 
 Graphic::Graphic(){
 }

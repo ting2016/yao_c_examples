@@ -6,7 +6,6 @@ CONFIG -= qt
 SOURCES += main.cpp \
     variadicparameters.cpp \
     streamlogger.cpp \
-    ostreamoverride.cpp \
     templatetest2.inc \
     templatetest1.cpp \
     graphic.cpp \
@@ -32,7 +31,6 @@ SOURCES += main.cpp \
 HEADERS += \
     variadicparameters.h \
     streamlogger.h \
-    ostreamoverride.h \
     templatetest2.h \
     templatetest1.h \
     graphic.h \
@@ -42,7 +40,6 @@ HEADERS += \
     singleton.h \
     hashtest.h \
     maptest.h \
-    fix_array.h \
     threadtest.h \
     functortest.h \
     algorithmtest.h \

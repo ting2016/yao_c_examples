@@ -1,12 +1,17 @@
 #ifndef LAMBDATEST_H
 #define LAMBDATEST_H
 
+namespace yao{
+    namespace lambda_ex{
+        class LambdaTest;
+        void testLambda();
+    }
+}
 
-class LambdaTest
+class yao::lambda_ex::LambdaTest
 {
 public:
     LambdaTest();
 };
 
-void testLambda();
 #endif // LAMBDATEST_H

@@ -1,11 +1,11 @@
 #include "lambdatest.h"
 #include <iostream>
-LambdaTest::LambdaTest()
+yao::lambda_ex::LambdaTest::LambdaTest()
 {
 
 }
 
-void testLambda (){
+void yao::lambda_ex::testLambda (){
     int a = 1, b = 11, c = 111;
     auto lamb = [a, &b, &c](auto x) mutable {   //mutable make a modifiable
         a += x; b += x; c += x;

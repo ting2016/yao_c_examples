@@ -1,11 +1,11 @@
 #ifndef BAR_H
 #define BAR_H
 #include <istream>
-namespace yao_bar{
+namespace yao{
 class Bar;
 }
 
-class yao_bar::Bar
+class yao::Bar
 {
 public:
     Bar() : Bar(0){}
@@ -13,13 +13,12 @@ public:
     Bar(const Bar& other);
     Bar& operator = (const Bar& other);
 
-public:
-    int getV() const;
-    std::ostream& stream_write(std::ostream& os) const;
 private:
     int v;
 
-    friend inline std::ostream& operator<<(std::ostream& os, const Bar& bar);
+    friend inline std::ostream& operator<<(std::ostream& os, const Bar& obj){
+        return os << obj.v;
+    }
 };
 
 #endif // BAR_H

@@ -1,13 +1,12 @@
 #include "variadicparameters.h"
 #include <iostream>
-VariadicParameters::VariadicParameters(){
-}
 
+using namespace yao::variadic;
 void VariadicParameters::expand(){
      std::cout << std::endl;
 }
 
-void testVariadicParameters(){
+void yao::variadic::test(){
     VariadicParameters t;
     t.expand("hello", "\t", 123);
 }

@@ -1,6 +1,5 @@
 #include "streamlogger.h"
 #include "variadicparameters.h"
-#include "ostreamoverride.h"
 #include "templatetest1.h"
 #include "templatetest2.h"
 #include "functionpointer.h"
@@ -28,8 +27,10 @@
 
 int main()
 {
-    yao_bar::Bar bar(20);
-    std::cout << bar << std::endl;
+    testTemplate1 ();
+    int a1 = 22, b1 = 33;
+    TemplateTest1<int> tmpl(a1, b1);
+    std::cout << "max(" << a1 << "," << b1 << "):" << tmpl.getmax() << std::endl;
 
     std::cout << "Finished" << std::endl;
     return 0;

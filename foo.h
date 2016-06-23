@@ -2,7 +2,10 @@
 #define FOO_H
 #include <iostream>
 
-class Foo
+namespace yao{
+class Foo;
+}
+class yao::Foo
 {
 public:
     Foo();
@@ -15,7 +18,9 @@ public:
 private:
     int v;
 
-    friend std::ostream& operator<<(std::ostream& os, const Foo& obj);
+    friend std::ostream& operator<<(std::ostream& os, const Foo& obj){
+        return os << "foo:" << obj.v;
+    }
 };
 
 

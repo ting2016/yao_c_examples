@@ -1,18 +1,19 @@
 #ifndef ALGORITHMTEST_H
 #define ALGORITHMTEST_H
+namespace yao{
+    namespace algorithm{
+        class Algorithm;
+        void algoOutput(int i);
+        void algoIncreace(int& i);
+        void test();
+    }
+}
 
-
-class AlgorithmTest
+class yao::algorithm::Algorithm
 {
 public:
     void operator()(int&) const;
 
 };
-
-
-void algoOutput(int i);
-void algoIncreace(int& i);
-
-void testAlgorithm();
 
 #endif // ALGORITHMTEST_H

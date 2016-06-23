@@ -1,6 +1,6 @@
 #include "chronotest.h"
 #include <unistd.h>
-using namespace yao_chrono;
+using namespace yao::chrono;
 YaoTime::YaoTime(){
     stamp = std::chrono::system_clock::now();
 }
@@ -122,7 +122,7 @@ int YaoTime::daysPassedFromEpoch() const{
     return daysFromEpoch().count ();
 }
 
-void yao_chrono::test(){
+void yao::chrono::test(){
     YaoTime t;
     std::cout << t.daysPassedFromEpoch () << std::endl;
     std::cout << t.daysFromEpoch ().count ()<< std::endl;

@@ -3,13 +3,15 @@
 #include <exception>
 #include <string>
 
-namespace yao_exception{
-class UserException;
-class NonExceptTest;
-void test();
+namespace yao{
+    namespace exception_ex{
+        class UserException;
+        class NonExceptTest;
+        void test();
+    }
 }
 
-class yao_exception::UserException : public std::exception{
+class yao::exception_ex::UserException : public std::exception{
 protected:
     std::string _what;
 public:
@@ -18,7 +20,7 @@ public:
     ~UserException() throw(){}
 };
 
-class yao_exception::NonExceptTest
+class yao::exception_ex::NonExceptTest
 {
 public:
     NonExceptTest();

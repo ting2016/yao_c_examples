@@ -5,20 +5,20 @@
 #include <yaostl.h>
 #include "foo.h"
 
-void yao_malicious::test (){
+void yao::malicious::test (){
     testPerformanceOfTraverseVector ();
 }
 
-void yao_malicious::testPerformanceOfTraverseVector (){
+void yao::malicious::testPerformanceOfTraverseVector (){
     const int count = 100000000;
     std::vector<int> vec;
-    yao_stl::SimpleVector<int> vec2;
+    yao::stl::SimpleVector<int> vec2;
     for(auto i = 0; i < count; i++){
         vec.push_back (i);
         vec2.push_back (i);
     }
 
-    yao_chrono::YaoTime t;
+    yao::chrono::YaoTime t;
     for(auto elem: vec){
         elem++;
     }
@@ -56,10 +56,10 @@ void yao_malicious::testPerformanceOfTraverseVector (){
     delete []p;
 }
 
-void yao_malicious::testVectorTraverse(){
-    std::vector<Foo> vec;
+void yao::malicious::testVectorTraverse(){
+    std::vector<yao::Foo> vec;
     for(auto i = 0; i < 10; i++){
-        vec.push_back (Foo(i + 1));
+        vec.push_back (yao::Foo(i + 1));
     }
 
     //indices visit
@@ -69,7 +69,7 @@ void yao_malicious::testVectorTraverse(){
     }
 
     //iterator 1
-    for(std::vector<Foo>::iterator it = vec.begin (); it != vec.end (); it++){
+    for(std::vector<yao::Foo>::iterator it = vec.begin (); it != vec.end (); it++){
         std::cout << *it << std::endl;
     }
 
@@ -91,7 +91,7 @@ void yao_malicious::testVectorTraverse(){
 
     //Highly encourged
     //lambda visit
-    std::for_each(vec.begin(), vec.end(), [](Foo const& elem) {
+    std::for_each(vec.begin(), vec.end(), [](yao::Foo const& elem) {
          std::cout << elem << std::endl;
     });
 }

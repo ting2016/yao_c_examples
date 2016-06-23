@@ -1,6 +1,6 @@
 #include "streamlogger.h"
 
-void testStreamLogger(){
+void yao::stream_logger::test(){
     StreamLogger logger;
     logger << "hello\t" << "world" << std::endl;
     logger << "num:\t" << 10 << std::endl;

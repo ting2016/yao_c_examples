@@ -2,25 +2,17 @@
 #include <map>
 #include <iostream>
 
-MapKeyClass1::MapKeyClass1(int v):value(v){
+yao::map_ex::MapKeyClass1::MapKeyClass1(int v):value(v){
 
 }
 
-std::ostream& operator<<(std::ostream& os, const MapKeyClass1& obj){
-    return os << obj.value;
-}
-
-bool MapKeyClass2::operator<(const MapKeyClass2& obj)const
+bool yao::map_ex::MapKeyClass2::operator<(const MapKeyClass2& obj)const
 {
     return (this->value < obj.value);
 }
 
-
-std::ostream& operator<<(std::ostream& os, const MapKeyClass2& obj){
-    return os << obj.value;
-}
-
-void testMapKey(){
+void yao::map_ex::test(){
+    using namespace yao::map_ex;
     std::map<MapKeyClass2, int> map;
     MapKeyClass2 k1(1);
     MapKeyClass2 k2(2);
