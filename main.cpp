@@ -24,12 +24,14 @@
 #include <stltest.h>
 #include "foo.h"
 #include "bar.h"
+#include "fileio.h"
 
 using namespace std;
 using namespace yao;
 int main()
 {
     yao::version::test ();
+    yao::file_io::test ();
     std::cout << "Finished" << std::endl;
     return 0;
 }

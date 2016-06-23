@@ -29,7 +29,7 @@ SOURCES += main.cpp \
     fileio.cpp
     #configurer/src/configurer.cpp
 
-HEADERS += \
+HEADERS += todo.h \
     variadicparameters.h \
     streamlogger.h \
     templatetest2.h \

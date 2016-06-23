@@ -18,7 +18,7 @@ namespace yao{
         {
         public:
             NonExceptTest();
-            //If a function is declared as noexcept, and if it throw an exception, this application will be terminated even catch block is written in the caller.
+            //NOTE If a function is declared as noexcept, and if it throw an exception, this application will be terminated even catch block is written in the caller.
             void noexceptTest() const noexcept;
             void exceptionThrowableTest() const;
         };

@@ -1,6 +1,7 @@
 #ifndef NAMESPACE_H
 #define NAMESPACE_H
 
+//NOTE namespace usage
 /*! namespace note
  * Two ways to write namespace
  * 1. put the full declaration in the namespace (preferred! because the details can be show in IDEs' class view, and member functions can be retriewed with some hot key)
