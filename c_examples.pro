@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console c++14
+CONFIG += console c++17
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -26,7 +26,8 @@ SOURCES += main.cpp \
     exceptiontest.cpp \
     bar.cpp \
     fileio.cpp \
-    ctor_test.cpp
+    ctor_test.cpp \
+    stdtest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -54,7 +55,8 @@ HEADERS += todo.h \
     fileio.h \
     stltest.h \
     namespace.h \
-    ctortest.h
+    ctortest.h \
+    stdtest.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread

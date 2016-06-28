@@ -6,6 +6,8 @@ namespace yao{
         void test();
         void testPerformanceOfTraverseVector();
         void testVectorTraverse();
+        void testIterator();
+        void testIOStreamIterator();
     }
 }
 #endif // MALICIOUS_H

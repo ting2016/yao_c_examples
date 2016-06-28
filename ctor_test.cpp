@@ -13,6 +13,7 @@ Foo::Foo(int size)
     std::cout << "Foo(int) is called" << std::endl;
     if(m_size < 0){
         throw yao::exception_ex::UserException("size cannot be negtive");
+        //assert(m_size >= 0);
     }else if(m_size == 0){
         m_capacity = 1;
     }else{

@@ -4,6 +4,9 @@
 #include <chronotest.h>
 #include <stltest.h>
 #include "foo.h"
+#include "bar.h"
+#include <iterator>
+#include "stltest.h"
 
 void yao::malicious::test (){
     testPerformanceOfTraverseVector ();
@@ -78,6 +81,11 @@ void yao::malicious::testVectorTraverse(){
         std::cout << *it << std::endl;
     }
 
+    //iterator 3
+    for(auto it = std::cbegin(vec); it != std::cend(vec); ++it){
+        std::cout << (*it) << std::endl;
+    }
+
     //range-for loop 1 (get object copy)
     for(auto v: vec){
         std::cout << v << std::endl;
@@ -94,4 +102,60 @@ void yao::malicious::testVectorTraverse(){
     std::for_each(vec.begin(), vec.end(), [](yao::Foo const& elem) {
          std::cout << elem << std::endl;
     });
+
+
+    //iterator way apply different strides
+    auto head = std::begin(vec);
+    auto tail = std::end(vec);
+    while(head < tail){
+        std::cout << *head << std::endl;
+        std::advance(head, 2);
+    }
+}
+
+void yao::malicious::testIterator(){
+
+
+    std::vector<yao::Bar> vec;
+    for(auto i = 0; i < 10; i++){
+        vec.push_back (yao::Bar(i + 1));
+    }
+
+    std::cout << "std::distance(vec.cbegin(), vec.cend()):" << std::distance(vec.cbegin (), vec.cend ()) << std::endl;
+    std::cout << "std::begin(vec):" << *std::cbegin(vec) << std::endl;
+    std::cout << "vec.begin():" << *vec.cbegin ()<< std::endl;
+    std::cout << "std::next(vec.begin(), 1):" << *std::next(vec.begin (), 1) << std::endl;
+    std::cout << "std::prev(vec.end(), 1):" << *std::prev(vec.end(), 1) << std::endl;
+
+    auto it = vec.begin ();
+    std::advance (it, 2);
+    std::cout << "std::advance(auto it = vec.begin(), 2) to begin:" << *it << std::endl;
+
+
+    std::vector<yao::Bar> vec2;
+    std::copy(vec.begin (), vec.end (), std::back_inserter(vec2)); // TODO front_inserter failed on vector
+}
+
+void yao::malicious::testIOStreamIterator(){
+
+    std::vector <yao::Bar> vec;
+    std::istream_iterator<int> eos;              // end-of-stream iterator
+    std::cout << "Please input numbers(-1 to quit):" << std::endl;
+    std::istream_iterator<int> iit (std::cin);   // stdin iterator
+    while(true){
+        if(iit == eos){
+            std::cerr << "bad format" << std::endl;
+            break;
+        }else{
+            if(*iit == -1){
+                break;
+            }
+            vec.push_back (yao::Bar(*iit));
+        }
+        ++iit;
+    }
+
+
+    std::ostream_iterator<yao::Bar> out_it (std::cout, "\n");
+    std::copy (vec.begin(), vec.end(), out_it);
 }
