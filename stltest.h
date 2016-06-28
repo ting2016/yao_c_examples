@@ -22,10 +22,10 @@ public:
     public:
         iterator() = delete;
         iterator(T** ptr) : m_ptr(ptr){ }
-        iterator operator++() { iterator i(*this); m_ptr++; return i; }
-        //        iterator operator++() { iterator i = *this; m_ptr++; return i; }
-        iterator operator++(int) { m_ptr++; return *this; }
         iterator (const iterator & other){this->m_ptr = other.m_ptr;}
+        //iterator operator++() { iterator i(*this); m_ptr++; return i; }
+        iterator operator++() { iterator i = *this; m_ptr++; return i; }    //cannot return ref because i is local object
+        iterator& operator++(int) { m_ptr++; return *this; }
 
         T& operator*() { return **m_ptr; }
         T* operator->() { return *m_ptr; }
@@ -202,10 +202,14 @@ namespace yao{
             public:
                 iterator() = delete;
                 iterator(T** ptr) : m_ptr(ptr){ }
-                iterator operator++() { iterator i(*this); m_ptr++; return i; }//TODO return ref or obj?
-                iterator operator++(int) { m_ptr++; return *this; } //TODO return ref or obj?
-                iterator operator+=(int n) { m_ptr += n; return *this; }//TODO return ref or obj?
-                iterator operator-=(int n) { m_ptr -= n; return *this; }//TODO return ref or obj?
+                iterator operator++() { iterator obj(*this); m_ptr++; return obj; }//cannot return reference because obj is local
+                iterator& operator++(int) { m_ptr++; return *this; }
+
+                iterator operator--() { iterator obj(*this); m_ptr++; return obj; }//cannot return reference because obj is local
+                iterator& operator--(int) { m_ptr++; return *this; }
+
+                iterator& operator+=(int n) { m_ptr += n; return *this; }
+                iterator& operator-=(int n) { m_ptr -= n; return *this; }
 
                 int operator-(const iterator& other){
                     return this->m_ptr - other.m_ptr;
@@ -217,16 +221,16 @@ namespace yao{
 
                 T& operator*() { return **m_ptr; }
                 T* operator->() { return *m_ptr; }
-                bool operator==(const iterator& rhs) { return m_ptr == rhs.m_ptr; }
-                bool operator!=(const iterator& rhs) { return m_ptr != rhs.m_ptr; }
+                bool operator==(const iterator& rhs) const { return m_ptr == rhs.m_ptr; }
+                bool operator!=(const iterator& rhs) const { return m_ptr != rhs.m_ptr; }
             private:
                 T** m_ptr;
             };
 
 
             inline int size() const { return m_size; }
-            inline iterator begin(){return iterator(m_data);}
-            inline iterator end(){return iterator(m_data + m_size);}
+            inline iterator begin() const{return iterator(m_data);}
+            inline iterator end() const{return iterator(m_data + m_size);}
 
             vector()
                 : vector(0){
@@ -246,7 +250,7 @@ namespace yao{
                 delete m_data;
             }
 
-            inline T& operator[](int index){
+            inline T& operator[] (int index){
                 assert(index < m_size);
                 return *m_data[index];
             }
