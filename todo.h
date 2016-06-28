@@ -38,3 +38,6 @@
 //TODO	iterator & implimentation
 //TODO	logger: variadic log, stream log, tcp log
 //TODO	predifined MACRO __LINE__, __DATE__, __FUNC__, __TIME__
+
+//TODO TREE
+

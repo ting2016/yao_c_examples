@@ -26,6 +26,7 @@
 #include "bar.h"
 #include "fileio.h"
 #include "stdtest.h"
+
 using namespace std;
 using namespace yao;
 int main()
