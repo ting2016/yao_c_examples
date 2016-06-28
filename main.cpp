@@ -25,13 +25,13 @@
 #include "foo.h"
 #include "bar.h"
 #include "fileio.h"
-#include "stdtest.h"
+
 
 using namespace std;
 using namespace yao;
 int main()
 {
-    yao::malicious::testIterator ();
+    yao::algorithm::test ();
     std::cout << "Finished" << std::endl;
     return 0;
 }

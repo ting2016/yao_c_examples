@@ -6,6 +6,8 @@ namespace yao{
         void algoOutput(int i);
         void algoIncreace(int& i);
         void test();
+        bool less_0_predicate(const int& v);
+        bool equal_predicate(const int& v1, const int& v2);
 
         class Algorithm
         {

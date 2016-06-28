@@ -27,7 +27,6 @@ SOURCES += main.cpp \
     bar.cpp \
     fileio.cpp \
     ctor_test.cpp \
-    stdtest.cpp \
     simpletree.cpp
     #configurer/src/configurer.cpp
 
@@ -57,7 +56,6 @@ HEADERS += todo.h \
     stltest.h \
     namespace.h \
     ctortest.h \
-    stdtest.h \
     simpletree.h
 #    configurer/include/configurer.h
 
