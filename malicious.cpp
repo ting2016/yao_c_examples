@@ -114,26 +114,50 @@ void yao::malicious::testVectorTraverse(){
 }
 
 void yao::malicious::testIterator(){
+//    std::vector<yao::Bar> vec;
+//    for(auto i = 0; i < 10; i++){
+//        vec.push_back (yao::Bar(i + 1));
+//    }
+
+//    std::cout << "std::distance(vec.cbegin(), vec.cend()):" << std::distance(vec.cbegin (), vec.cend ()) << std::endl;
+//    std::cout << "std::begin(vec):" << *std::cbegin(vec) << std::endl;
+//    std::cout << "vec.begin():" << *vec.cbegin ()<< std::endl;
+//    std::cout << "std::next(vec.begin(), 1):" << *std::next(vec.begin (), 1) << std::endl;
+//    std::cout << "std::prev(vec.end(), 1):" << *std::prev(vec.end(), 1) << std::endl;
+
+//    auto it = vec.begin ();
+//    std::advance (it, 2);
+//    std::cout << "std::advance(auto it = vec.begin(), 2) to begin:" << *it << std::endl;
 
 
-    std::vector<yao::Bar> vec;
+//    std::vector<yao::Bar> vec2;
+//    std::copy(vec.begin (), vec.end (), std::back_inserter(vec2)); // TODO front_inserter failed on vector
+
+//    int a[10];
+//    for(auto i = 0; i < 10; i++){
+//        a[i] = i + 1;
+//    }
+
+//    std::cout << "simple iterator test" << std::endl;
+//    MyIterator from(a);
+//    MyIterator until(a + 10);
+//    for (MyIterator it = from; it != until; it++){
+//        std::cout << *it << std::endl;
+//    }
+
+    yao::stl::vector<yao::Bar> vec3;
     for(auto i = 0; i < 10; i++){
-        vec.push_back (yao::Bar(i + 1));
+        vec3.push_back (yao::Bar(i + 1));
     }
 
-    std::cout << "std::distance(vec.cbegin(), vec.cend()):" << std::distance(vec.cbegin (), vec.cend ()) << std::endl;
-    std::cout << "std::begin(vec):" << *std::cbegin(vec) << std::endl;
-    std::cout << "vec.begin():" << *vec.cbegin ()<< std::endl;
-    std::cout << "std::next(vec.begin(), 1):" << *std::next(vec.begin (), 1) << std::endl;
-    std::cout << "std::prev(vec.end(), 1):" << *std::prev(vec.end(), 1) << std::endl;
+    for(auto& v: vec3){
+        std::cout << v << std::endl;
+    }
 
-    auto it = vec.begin ();
-    std::advance (it, 2);
-    std::cout << "std::advance(auto it = vec.begin(), 2) to begin:" << *it << std::endl;
-
-
-    std::vector<yao::Bar> vec2;
-    std::copy(vec.begin (), vec.end (), std::back_inserter(vec2)); // TODO front_inserter failed on vector
+    std::cout << "std::distance(vec.cbegin(), vec.cend()):" << std::distance(vec3.begin (), vec3.end ()) << std::endl;
+    std::cout << "std::begin(vec):" << *std::begin(vec3) << std::endl;
+    std::cout << "vec.begin():" << *vec3.begin ()<< std::endl;
+    std::cout << "std::next(vec.begin(), 1):" << *std::next(vec3.begin (), 1) << std::endl;
 }
 
 void yao::malicious::testIOStreamIterator(){
