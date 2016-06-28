@@ -9,6 +9,7 @@ namespace yao{
         bool less_0_predicate(const int& v);
         bool equal_predicate(const int& v1, const int& v2);
 
+        void mem_test();
         class Algorithm
         {
         public:

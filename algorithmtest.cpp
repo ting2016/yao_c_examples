@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 
 
 void yao::algorithm::algoOutput(int i){
@@ -103,3 +104,32 @@ bool yao::algorithm::equal_predicate(const int& v1, const int& v2){
     return v1 == v2;
 }
 
+
+void yao::algorithm::mem_test(){
+    char s1[] = "hello";
+    char s2[] = "world";
+
+    std::memset(s2, 'c', sizeof(s2));
+
+    for(auto i = 0; i < sizeof(s2); i++){
+        std::cout << s2[i] << std::endl;
+    }
+    std::memcpy(s2, s1, sizeof(s2));
+
+    for(auto i = 0; i < sizeof(s2); i++){
+        std::cout << s2[i] << std::endl;
+    }
+
+    std::fill(s2, s2 + sizeof(s2), 'x');
+
+    for(auto i = 0; i < sizeof(s2); i++){
+        std::cout << s2[i] << std::endl;
+    }
+
+    std::copy(s1, s1 + sizeof(s1), s2);
+    for(auto i = 0; i < sizeof(s2); i++){
+        std::cout << s2[i] << std::endl;
+    }
+
+
+}

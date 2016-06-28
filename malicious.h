@@ -21,6 +21,7 @@ namespace yao{
         void testVectorTraverse();
         void testIterator();
         void testIOStreamIterator();
+        void mem_speed_test();
     }
 }
 #endif // MALICIOUS_H

@@ -31,7 +31,9 @@ using namespace std;
 using namespace yao;
 int main()
 {
-    yao::algorithm::test ();
+//    yao::algorithm::test ();
+    yao::algorithm::mem_test ();
+//    yao::malicious::mem_speed_test ();
     std::cout << "Finished" << std::endl;
     return 0;
 }

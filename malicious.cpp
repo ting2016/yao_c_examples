@@ -7,6 +7,7 @@
 #include "bar.h"
 #include <iterator>
 #include "stltest.h"
+#include <cstring>
 
 void yao::malicious::test (){
     testPerformanceOfTraverseVector ();
@@ -182,4 +183,45 @@ void yao::malicious::testIOStreamIterator(){
 
     std::ostream_iterator<yao::Bar> out_it (std::cout, "\n");
     std::copy (vec.begin(), vec.end(), out_it);
+}
+
+
+//std::copy is faster than std::memcpy (why, it fill memory in sizeof(long) interval, not in 1 Byte)
+//std::fill is slower than std::memset
+void yao::malicious::mem_speed_test (){
+    const int size = 1000000;
+    char *s1 = new char[size];
+    char *s2 = new char[size];
+
+    for(auto i = 0; i < size; i++){
+        s1[i] = i % 26 + 65;
+    }
+    yao::chrono::YaoTime t;
+
+    std::memset(s2, 0, size);
+    std::cout << "memset milliSec:" << t.milliSecondsPassed () << std::endl;
+
+    t.recordTime ();
+
+
+    long* p = (long*)s2;
+    long* q = (long*)(s2 + size);
+    int long_leng = sizeof(long);
+    while(p < q){
+        *p++ <<= long_leng;
+    }
+    std::cout << "pointer milliSec:" << t.milliSecondsPassed () << std::endl;
+
+    t.recordTime ();
+
+    std::fill(s2, s2 + size, 0);
+    std::cout << "std::fill milliSec:" << t.milliSecondsPassed () << std::endl;
+
+    t.recordTime ();
+    std::memcpy(s2, s1, size);
+    std::cout << "memcpy milliSec:" << t.milliSecondsPassed () << std::endl;
+
+    t.recordTime ();
+    std::copy(s1, s1 + size, s2);
+    std::cout << "std::copy milliSec:" << t.milliSecondsPassed () << std::endl;
 }
