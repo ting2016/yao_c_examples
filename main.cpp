@@ -30,8 +30,7 @@ using namespace std;
 using namespace yao;
 int main()
 {
-    yao::version::test ();
-    yao::file_io::test ();
+    yao::puretest::test();
     std::cout << "Finished" << std::endl;
     return 0;
 }
