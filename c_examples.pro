@@ -19,14 +19,14 @@ SOURCES += main.cpp \
     functortest.cpp \
     algorithmtest.cpp \
     randomtest.cpp \
-    puretest.cpp \
     chronotest.cpp \
     malicious.cpp \
     lambdatest.cpp \
     foo.cpp \
     exceptiontest.cpp \
     bar.cpp \
-    fileio.cpp
+    fileio.cpp \
+    ctor_test.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -45,7 +45,6 @@ HEADERS += todo.h \
     functortest.h \
     algorithmtest.h \
     randomtest.h \
-    puretest.h \
     chronotest.h \
     malicious.h \
     lambdatest.h \
@@ -54,7 +53,8 @@ HEADERS += todo.h \
     bar.h \
     fileio.h \
     stltest.h \
-    namespace.h
+    namespace.h \
+    ctortest.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread

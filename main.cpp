@@ -15,7 +15,7 @@
 #include "functortest.h"
 #include "threadtest.h"
 #include "algorithmtest.h"
-#include "puretest.h"
+#include "ctortest.h"
 #include "chronotest.h"
 #include <unistd.h>
 #include "malicious.h"
@@ -30,7 +30,7 @@ using namespace std;
 using namespace yao;
 int main()
 {
-    yao::puretest::test();
+    yao::ctor_ex::test();
     std::cout << "Finished" << std::endl;
     return 0;
 }

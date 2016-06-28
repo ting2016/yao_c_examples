@@ -12,6 +12,7 @@ void yao::file_io::read_textfile (){
 
     //1st way
     std::ifstream is1(fn, std::ios_base::in);
+    //if(is1){
     if(is1.is_open ()){
         std::string line;
         std::getline(is1, line);
