@@ -225,3 +225,10 @@ void yao::malicious::mem_speed_test (){
     std::copy(s1, s1 + size, s2);
     std::cout << "std::copy milliSec:" << t.milliSecondsPassed () << std::endl;
 }
+
+void yao::malicious::testPair (){
+    std::pair <int, int> p1{1, 3};
+    auto p2 = std::make_pair(2, 'M');
+    std::cout << p1.first << ", " << p1.second << std::endl;
+    std::cout << p2.first << ", " << p2.second << std::endl;
+}

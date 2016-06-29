@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     bar.cpp \
     fileio.cpp \
     ctor_test.cpp \
-    simpletree.cpp
+    simpletree.cpp \
+    functionaltest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -56,7 +57,8 @@ HEADERS += todo.h \
     stltest.h \
     namespace.h \
     ctortest.h \
-    simpletree.h
+    simpletree.h \
+    functionaltest.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread

@@ -25,15 +25,13 @@
 #include "foo.h"
 #include "bar.h"
 #include "fileio.h"
+#include <functional>
+#include <functionaltest.h>
+#include <functional>
 
-
-using namespace std;
-using namespace yao;
 int main()
 {
-//    yao::algorithm::test ();
-    yao::algorithm::mem_test ();
-//    yao::malicious::mem_speed_test ();
+    yao::malicious::testPair ();
     std::cout << "Finished" << std::endl;
     return 0;
 }
