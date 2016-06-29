@@ -6,7 +6,6 @@
 //TODO  call_back function
 
 //TODO	typedef
-//TODO	define
 //TODO	pipe
 //TODO	eventQueue
 //TODO	enum

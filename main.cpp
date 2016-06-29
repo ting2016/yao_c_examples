@@ -28,10 +28,11 @@
 #include <functional>
 #include <functionaltest.h>
 #include <functional>
-
+#include <initializer_list_test.h>
 int main()
 {
-    yao::malicious::testPair ();
+    yao::functional::test ();
+
     std::cout << "Finished" << std::endl;
     return 0;
 }
