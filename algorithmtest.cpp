@@ -111,23 +111,23 @@ void yao::algorithm::mem_test(){
 
     std::memset(s2, 'c', sizeof(s2));
 
-    for(auto i = 0; i < sizeof(s2); i++){
+    for(std::size_t i = 0; i < sizeof(s2); i++){
         std::cout << s2[i] << std::endl;
     }
     std::memcpy(s2, s1, sizeof(s2));
 
-    for(auto i = 0; i < sizeof(s2); i++){
+    for(std::size_t i = 0; i < sizeof(s2); i++){
         std::cout << s2[i] << std::endl;
     }
 
     std::fill(s2, s2 + sizeof(s2), 'x');
 
-    for(auto i = 0; i < sizeof(s2); i++){
+    for(std::size_t i = 0; i < sizeof(s2); i++){
         std::cout << s2[i] << std::endl;
     }
 
     std::copy(s1, s1 + sizeof(s1), s2);
-    for(auto i = 0; i < sizeof(s2); i++){
+    for(std::size_t i = 0; i < sizeof(s2); i++){
         std::cout << s2[i] << std::endl;
     }
 
