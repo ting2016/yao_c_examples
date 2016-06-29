@@ -1,5 +1,6 @@
 #ifndef MALICIOUS_H
 #define MALICIOUS_H
+#include <iostream>
 #include <iterator>
 namespace yao{
     namespace malicious {
@@ -23,6 +24,31 @@ namespace yao{
         void testIOStreamIterator();
         void mem_speed_test();
         void testPair();
+
+        class SomeClass{
+        public:
+            SomeClass() = delete;
+            SomeClass(double v): v(v){}
+            auto operator()() const -> int{    //NOTE the result will be casted as int
+                return v;
+            }
+
+            auto operator()(auto) const -> double{    //NOTE the result will be casted as int
+                return v;
+            }
+
+            double& operator()(auto, auto) {    //NOTE the result will be casted as int
+                return v;
+            }
+
+            void print() const{
+                std::cout << "SomeClass.v:" << v << std::endl;
+            }
+
+        private:
+            double v;
+        };
+        void test_return_auto();
     }
 }
 #endif // MALICIOUS_H

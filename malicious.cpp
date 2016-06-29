@@ -232,3 +232,16 @@ void yao::malicious::testPair (){
     std::cout << p1.first << ", " << p1.second << std::endl;
     std::cout << p2.first << ", " << p2.second << std::endl;
 }
+
+void yao::malicious::test_return_auto(){
+    SomeClass cs(123.45678);
+    cs.print ();
+    std::cout << "operator()()->int:" << cs() << std::endl;
+    std::cout << "operator()(auto)->double:" << cs(1) << std::endl;
+
+    auto & v_ref = cs(2, 2);
+    v_ref += 1000;
+    cs.print ();
+    std::cout << "operator()()->int:" << cs() << std::endl;
+    std::cout << "operator()(auto)->double:" << cs(1) << std::endl;
+}

@@ -29,10 +29,11 @@
 #include <functionaltest.h>
 #include <functional>
 #include <initializer_list_test.h>
+
+
 int main()
 {
-    yao::functional::test ();
-
+    yao::malicious::test_return_auto ();
     std::cout << "Finished" << std::endl;
     return 0;
 }
