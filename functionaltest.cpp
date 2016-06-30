@@ -39,8 +39,8 @@ void yao::functional::test (){
 
     int a[] = {10, 20, 5, 15, 25};
     int b[] = {15, 10, 20};
-    std::sort (a, a + sizeof a, std::less<int>());  // 5 10 15 20 25
-    std::sort (b, b + sizeof b, std::less<int>());  //   10 15 20
+    std::sort (a, a + (sizeof a)/sizeof(int), std::less<int>());  // 5 10 15 20 25
+    std::sort (b, b + (sizeof b)/sizeof(int), std::less<int>());  //   10 15 20
     if (std::includes (a, a+5, b, b + 3, std::less<int>()))
         std::cout << "a includes b" << std::endl;
 
