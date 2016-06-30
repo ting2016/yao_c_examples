@@ -48,7 +48,47 @@ namespace yao{
         private:
             double v;
         };
+
         void test_return_auto();
+
+
+        /*!
+         * \brief Once a class is declared as final, it cannot be derived
+         * once a method is declared as final, it cannot be overriden
+         */
+        class Base{
+        public:
+            virtual void fun() const = 0;
+        };
+
+        class Derived0: public Base{
+        public:
+            virtual /*virtual is optional*/ void fun() const override;
+        };
+
+        class Derived1: public Base{
+        public:
+            virtual /*virtual is optional*/ void fun() const override final;
+        };
+
+        class Derived2 final: public Base{
+        public:
+            virtual /*virtual is optional*/ void fun() const override final;
+        };
+
+        class Derived0Derived final: public Derived0{
+        public:
+            virtual /*virtual is optional*/ void fun() const override final;
+        };
+
+        class Derived1Derived final: public Derived1{
+        public:
+//            void fun() const override final;  //ill format because fun is final in Derived1
+        };
+
+        //class Derived2Derived final: public Derived2{}; //ill formated because Derived2 is final class
+
+        void testFinalClassFinalMethod();
     }
 }
 #endif // MALICIOUS_H

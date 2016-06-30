@@ -245,3 +245,48 @@ void yao::malicious::test_return_auto(){
     std::cout << "operator()()->int:" << cs() << std::endl;
     std::cout << "operator()(auto)->double:" << cs(1) << std::endl;
 }
+
+void yao::malicious::Derived0::fun() const{
+    std::cout << "Derived0 fun() is called" << std::endl;
+}
+
+void yao::malicious::Derived1::fun() const{
+    std::cout << "Derived1 fun() is called" << std::endl;
+}
+
+void yao::malicious::Derived2::fun() const{
+    std::cout << "Derived2 fun() is called" << std::endl;
+}
+
+void yao::malicious::Derived0Derived::fun() const{
+    std::cout << "Derived0Derived fun() is called" << std::endl;
+}
+
+
+void yao::malicious::testFinalClassFinalMethod(){
+    Derived0 d0;
+    Derived1 d1;
+    Derived2 d2;
+    Derived0Derived d0d;
+    Derived1Derived d1d;
+
+    d0.fun ();
+    d1.fun ();
+    d2.fun ();
+    d0d.fun ();
+    d1d.fun ();
+
+    std::cout << "-----------" << std::endl;
+    Base *b[5];
+    b[0] = &d0;
+    b[1] = &d1;
+    b[2] = &d2;
+    b[3] = &d0d;
+    b[4] = &d1d;
+
+    b[0]->fun ();
+    b[1]->fun ();
+    b[2]->fun ();
+    b[3]->fun ();
+    b[4]->fun ();
+}

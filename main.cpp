@@ -33,7 +33,7 @@
 
 int main()
 {
-    yao::malicious::test_return_auto ();
+    yao::malicious::testFinalClassFinalMethod ();
     std::cout << "Finished" << std::endl;
     return 0;
 }
