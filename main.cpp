@@ -29,10 +29,12 @@
 #include <functionaltest.h>
 #include <functional>
 #include <initializer_list_test.h>
+#include "signaltest.h"
 
 
 int main()
 {
+    yao::signalTset::testSignal ();
     yao::malicious::testFinalClassFinalMethod ();
     std::cout << "Finished" << std::endl;
     return 0;

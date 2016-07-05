@@ -29,7 +29,8 @@ SOURCES += main.cpp \
     ctor_test.cpp \
     simpletree.cpp \
     functionaltest.cpp \
-    initializer_list_test.cpp
+    initializer_list_test.cpp \
+    signaltest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -60,7 +61,8 @@ HEADERS += todo.h \
     ctortest.h \
     simpletree.h \
     functionaltest.h \
-    initializer_list_test.h
+    initializer_list_test.h \
+    signaltest.h
 #    configurer/include/configurer.h
 
-LIBS += -lpthread
+LIBS += -lpthread -lrt
