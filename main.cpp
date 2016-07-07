@@ -30,12 +30,11 @@
 #include <functional>
 #include <initializer_list_test.h>
 #include "signaltest.h"
-
+#include "timertest.h"
 
 int main()
 {
-    yao::signalTset::testSignal ();
-    yao::malicious::testFinalClassFinalMethod ();
+    yao::timer::test ();
     std::cout << "Finished" << std::endl;
     return 0;
 }

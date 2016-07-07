@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     simpletree.cpp \
     functionaltest.cpp \
     initializer_list_test.cpp \
-    signaltest.cpp
+    signaltest.cpp \
+    timertest.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -62,7 +63,8 @@ HEADERS += todo.h \
     simpletree.h \
     functionaltest.h \
     initializer_list_test.h \
-    signaltest.h
+    signaltest.h \
+    timertest.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread -lrt

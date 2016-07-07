@@ -3,8 +3,9 @@
 
 namespace yao {
     namespace signalTset{
-    void testSignal();
-    void signalHandler(int sig);
+        void testSignal();
+        void signalHandler(int sig);
+        void testSignal2 ();
     }
 }
 
