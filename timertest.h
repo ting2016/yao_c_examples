@@ -36,6 +36,13 @@ namespace yao{
         void task2(int a);
         void task3(const yao::Foo& f);
         void test();
+
+        int task4(void);
+
+        typedef void(*FUN)();
+//        void simpleTimer(int after, FUN task){
+        void simpleTimer(int after, void (*task)(void));
+        void simpleTimer2(int after, int (*task)(void));
     }
 }
 

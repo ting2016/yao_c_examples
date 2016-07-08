@@ -1,3 +1,10 @@
+//TODO decltype
+//TODO static_assert
+//TODO std::is_same
+//TODO std::result_of
+
+//TODO #include <type_traits>
+//TODO full lambda define
 //TODO  template C++11 14 17
 //TODO  file io and path(file system)
 
@@ -26,4 +33,4 @@
 //TODO	doxgen
 //TODO	static_cast, dynamic_cast, reinterpret_cast, const_cast, explicit cast, implicit conversions
 //TODO TREE
-
+//TODO cmake, auto-make, auto-conf, auto-gen

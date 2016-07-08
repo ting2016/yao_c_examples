@@ -1,3 +1,4 @@
+#include <utility>
 #include "streamlogger.h"
 #include "variadicparameters.h"
 #include "templatetest1.h"
@@ -31,10 +32,12 @@
 #include <initializer_list_test.h>
 #include "signaltest.h"
 #include "timertest.h"
+#include <typeindex>
+#include <typeinfo>
 
-int main()
-{
-    yao::timer::test ();
+
+int main(/*int argc, char** argv*/){
+
     std::cout << "Finished" << std::endl;
     return 0;
 }
