@@ -34,3 +34,16 @@
 //TODO	static_cast, dynamic_cast, reinterpret_cast, const_cast, explicit cast, implicit conversions
 //TODO TREE
 //TODO cmake, auto-make, auto-conf, auto-gen
+
+/*
+//TODO mutable
+int main()
+{
+    int a = 0, b = 10, c = 100;
+    auto m1 = [a, &b, &c]() mutable {
+        a = 2; b++; c++;
+    };
+    m1();
+    std::cout << a << "\t" << b << "\t" << c << std::endl;
+}
+*/
