@@ -140,6 +140,4 @@ void yao::chrono::test(){
     std::cout << t.milliSecondsPassed () << std::endl;
     std::cout << t.secondsPassed () << std::endl;
     std::cout << t.daysPassed () << std::endl;
-
-
 }
