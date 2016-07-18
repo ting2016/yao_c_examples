@@ -5,17 +5,18 @@
 #include <iostream>
 namespace yao{
     namespace thread_ex{
-        class ThreadClass1;
+        class ThreadClass1
+        {
+        public:
+            ThreadClass1(){}
+            void operator()() const;
+        };
+
         void thread_work();
         void testThread();
+
     }
 }
-class yao::thread_ex::ThreadClass1
-{
-public:
-    ThreadClass1(){}
-    void operator()() const;
-};
 
 
 #endif // THREADTEST_H

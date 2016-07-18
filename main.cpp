@@ -37,9 +37,6 @@
 #include <algorithm>
 
 int main(/*int argc, char** argv*/){
-
-    yao::malicious::testPerformanceOfTraverseVector ();
-
     std::cout << "Finished" << std::endl;
     return 0;
 }

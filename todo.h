@@ -1,9 +1,18 @@
+//TODO	concurrency
+//  c, c++ Thread
+//  linux pthread
+//  std::thread
+//  boost thread
+//  mutex and locker
+//  mutable
+
 //TODO decltype**
 //TODO static_assert
 //TODO std::is_same
 //TODO std::result_of
 
 //TODO #include <type_traits>
+//TODO #include <typeinfo>
 //TODO full lambda define
 //TODO  template C++11 14 17
 //TODO  file io and path(file system)
@@ -17,11 +26,9 @@
 //TODO	eventQueue
 //TODO	enum
 //TODO	#pragma pack(push, 1) #pragma pack(pop)
-//TODO	timer
 //TODO	date time
 //TODO	curl
 //TODO	zip
-//TODO	Thread + mutex
 //TODO	tcp
 //TODO	udp
 //TODO	good urls

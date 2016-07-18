@@ -9,101 +9,19 @@
 #include "stltest.h"
 #include <cstring>
 
-/*
-#include <vector>
-#include <iostream>
-#include <chrono>
-
-const int COUNT = 10000000;
-
-void fun0(){
-    int *a = new int[COUNT];
-    int *s = a - 1;
-    int *e = a + COUNT;
-    auto stamp = std::chrono::system_clock::now();
-    while(++s < e){
-        ++*s;
-    }
-    std::cout <<"millisec passed:" << std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now() - stamp).count () << std::endl;;
-    delete []a;
-}
-
-
-void fun1(){
-    int *a = new int[COUNT];
-    auto stamp = std::chrono::system_clock::now();
-    for(int i = 0; i < COUNT; i++){
-        ++a[i];
-    }
-    std::cout <<"millisec passed:" << std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now() - stamp).count () << std::endl;
-    delete []a;
-}
-
-void fun2(){
-    std::vector<int> vec(COUNT);
-    auto stamp = std::chrono::system_clock::now();
-    for(auto& elem: vec){
-        ++elem;
-    }
-    std::cout <<"millisec passed:" << std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now() - stamp).count () << std::endl;;
-}
-
-void fun3(){
-    std::vector<int> vec;
-    for(auto i = 0; i < COUNT; i++){
-            vec.push_back (i);
-            vec.push_back (i);
-    }
-
-    auto stamp = std::chrono::system_clock::now();
-    for(auto elem: vec){
-        //++elem;
-    }
-    std::cout <<"millisec passed:" << std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::system_clock::now() - stamp).count () << std::endl;;
-}
-
-int main(){
-    fun0();
-    fun1();
-    fun2();
-    fun3();
-    return 0;
-}
- */
-
 void yao::malicious::test (){
     testPerformanceOfTraverseVector ();
 }
 
 void yao::malicious::testPerformanceOfTraverseVector (){
     const int count = 100000000;
-    std::vector<int> vec;
-    yao::stl::SimpleVector<int> vec2;
-    for(auto i = 0; i < count; i++){
-        vec.push_back (i);
-        vec2.push_back (i);
-    }
-
-//    for(auto elem: vec){
-//        std::cout << elem << std::endl;
-//    }
+    std::vector<int> vec(count);
 
     yao::chrono::YaoTime t;
     for(auto& elem: vec){
         elem++;
     }
     std::cout << "iterator traverse vecter of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
-
-
-//    for(auto elem: vec){
-//        std::cout << elem << std::endl;
-//    }
-
-    t.recordTime ();
-    for(auto elem: vec2){
-        elem++;
-    }
-    std::cout << "iterator traverse yao vecter of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
 
     t.recordTime ();
     int size = vec.size ();
@@ -120,14 +38,18 @@ void yao::malicious::testPerformanceOfTraverseVector (){
 
     int* p = new int[count];
     int * pEnd = p + count;
-    int* q = p;
-
     t.recordTime ();
-    while(q != pEnd){
+    for(int* q = p; q != pEnd; q++){
         (*q)++;
-        q++;
     }
     std::cout << "pointer traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
+
+    t.recordTime ();
+    for(auto i = 0; i < count; i++){
+        p[i]++;
+    }
+
+    std::cout << "index traverse array of " << count << " elements. milliSec:" << t.milliSecondsPassed () << std::endl;
     delete []p;
 }
 
@@ -360,4 +282,9 @@ void yao::malicious::testFinalClassFinalMethod(){
     b[2]->fun ();
     b[3]->fun ();
     b[4]->fun ();
+}
+
+
+void yao::malicious::pureTest(){
+
 }

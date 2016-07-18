@@ -89,6 +89,7 @@ namespace yao{
         //class Derived2Derived final: public Derived2{}; //ill formated because Derived2 is final class
 
         void testFinalClassFinalMethod();
+        void pureTest();
     }
 }
 #endif // MALICIOUS_H
