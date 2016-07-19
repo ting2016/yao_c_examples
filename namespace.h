@@ -19,6 +19,7 @@ namespace yao{
             void fun3(){}
         };
 
+        //second way
         class TestClass2;
     }
 }

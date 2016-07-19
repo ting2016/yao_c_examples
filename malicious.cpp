@@ -8,6 +8,7 @@
 #include <iterator>
 #include "stltest.h"
 #include <cstring>
+#include <exceptiontest.h>
 
 void yao::malicious::test (){
     testPerformanceOfTraverseVector ();
@@ -286,5 +287,10 @@ void yao::malicious::testFinalClassFinalMethod(){
 
 
 void yao::malicious::pureTest(){
-
+    try{
+        yao::Foo f;
+        throw yao::exception_ex::UserException("test exception"); //local variable will be desconstrcted.
+    }catch(std::exception &e){
+        std::cout << " get exception:" << e.what () << std::endl;
+    }
 }

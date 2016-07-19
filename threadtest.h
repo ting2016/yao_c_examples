@@ -37,8 +37,25 @@ namespace yao{
             void operator()() const;
             void print() const;
 
+            void foo();
         private:
             int value;
+        };
+
+        class ThreadGuard{
+        public:
+            explicit ThreadGuard(std::thread& job): m_job(job){
+            }
+            ~ThreadGuard(){
+                if(m_job.joinable ()){
+                    m_job.join ();
+                }
+            }
+            ThreadGuard(const ThreadGuard&) = delete;
+            ThreadGuard& operator=(const ThreadGuard&) = delete;
+            ThreadGuard(ThreadGuard&&) = delete;
+            private:
+                std::thread& m_job;
         };
 
         void foo();
@@ -47,6 +64,7 @@ namespace yao{
         void testSimpleThread();
         void testObjectThread();
         void testRunAfterObjectDestroyedOnDetachedThread();
+        void testThreadGuard();
         void test();
 
     }

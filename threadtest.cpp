@@ -1,19 +1,25 @@
 #include "threadtest.h"
-
+#include <functional>
 void yao::thread_ex::Task::print() const{
     std::cout << "value:" << value << std::endl;
 }
 
 void yao::thread_ex::Task::operator()() const{
-    for(auto i = 1; i < 5; i++){
+    for(auto i = 0; i < 5; i++){
         std::cout << std::this_thread::get_id () << " is running..." << std::endl;
         std::this_thread::sleep_for (std::chrono::seconds(1));
     }
 }
 
+void yao::thread_ex::Task::foo(){
+    for(auto i = 0; i < 5; i++){
+        std::cout << std::this_thread::get_id () << " is running..." << std::endl;
+        std::this_thread::sleep_for (std::chrono::seconds(1));
+    }
+}
 
 void yao::thread_ex::foo(){
-    for(auto i = 1; i < 5; i++){
+    for(auto i = 0; i < 5; i++){
         std::cout << std::this_thread::get_id () << " is running..." << std::endl;
         std::this_thread::sleep_for (std::chrono::seconds(1));
     }
@@ -41,11 +47,18 @@ void yao::thread_ex::testRunAfterObjectDestroyedOnDetachedThread(){
     std::this_thread::sleep_for (std::chrono::seconds(3));
 }
 
+void yao::thread_ex::testThreadGuard(){
+    std::thread job(foo);
+    ThreadGuard g(job);
+}
+
 /*
  * 1. functor must be defined
  * 2. thread will make a copy of this object
  * 3. detach or join is demanded otherwise segmentation fault will occur
  * 4. once a thread finished, its thread_id is expired
+ * 5. detached thread's thread_id is not valid
+ * 6. once a thread is detached or joined, its joinable is false
  */
 void yao::thread_ex::testObjectThread(){
     //method 1: create object, pass it as parameter to a thread (deeply: thread take object as parameter, then make a copy, then use the copy's functor as the entrie of thread)
@@ -67,13 +80,22 @@ void yao::thread_ex::testObjectThread(){
 
     //method 3: ananimous thread and lambda
     std::thread([](){
-        for(auto i = 1; i < 5; i++){
+        for(auto i = 0; i < 5; i++){
             std::cout << std::this_thread::get_id () << " is running..." << std::endl;
             std::this_thread::sleep_for (std::chrono::seconds(1));
         }
     }).join ();
+
+    std::cout << "------------" << std::endl;
+    //method 4: member function as the entrie of a thread
+    std::thread(std::bind(&Task::foo, &task)).join ();
 }
 
 void yao::thread_ex::test (){
-    testObjectThread ();
+    //testObjectThread ();
+    std::thread t(foo);
+    std::cout << t.get_id () << "\t" << t.joinable () << std::endl;
+    t.detach ();
+    std::cout << t.get_id () << "\t" << t.joinable () << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(5));
 }
