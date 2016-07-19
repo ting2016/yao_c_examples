@@ -37,6 +37,7 @@
 #include <algorithm>
 
 int main(/*int argc, char** argv*/){
+    yao::thread_ex::test ();
     std::cout << "Finished" << std::endl;
     return 0;
 }

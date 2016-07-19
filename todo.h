@@ -4,7 +4,13 @@
 //  std::thread
 //  boost thread
 //  mutex and locker
+//  std::async
 //  mutable
+//  atomic
+//TODO question: multi-threads run in the same core or several, if several core, how to config?
+
+
+
 
 //TODO decltype**
 //TODO static_assert
