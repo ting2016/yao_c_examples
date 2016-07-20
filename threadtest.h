@@ -4,6 +4,8 @@
 #include <thread>
 #include <iostream>
 
+//NOTE: QT CONFIG : LIBS += -lpthread
+//NOTE: compile:: -lpthread
 namespace yao{
     namespace thread_ex{
 
