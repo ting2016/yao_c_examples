@@ -1,3 +1,12 @@
+//TODO Value categories: http://en.cppreference.com/w/cpp/language/value_category
+                        //http://stackoverflow.com/questions/3601602/what-are-rvalues-lvalues-xvalues-glvalues-and-prvalues
+//TODO memory
+//TODO new
+//TODO ulitity  std::move, std::forward, decltype**
+//TODO typeindex typeinfo type_trails
+//TODO functional
+//TODO algorithm
+
 //TODO	concurrency
 //  c, c++ Thread
 //  linux pthread
@@ -12,13 +21,12 @@
 
 
 
-//TODO decltype**
+
 //TODO static_assert
 //TODO std::is_same
 //TODO std::result_of
 
-//TODO #include <type_traits>
-//TODO #include <typeinfo>
+
 //TODO full lambda define
 //TODO  template C++11 14 17
 //TODO  file io and path(file system)
