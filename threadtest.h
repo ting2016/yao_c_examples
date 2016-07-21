@@ -3,6 +3,7 @@
 #include <chrono>
 #include <thread>
 #include <iostream>
+#include <string>
 
 //NOTE: QT CONFIG : LIBS += -lpthread
 //NOTE: compile:: -lpthread
@@ -67,6 +68,7 @@ namespace yao{
         void foo2(int v);
         void foo3(const int& v);
         void foo4(int& v);
+        void foo5(std::string& v);
 
         void testSimpleThread();
         void testSimpleThreadWithPara();

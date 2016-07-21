@@ -46,6 +46,12 @@ void yao::thread_ex::foo4(int& v){ //Not support default calling; make a real re
     }
 }
 
+void yao::thread_ex::foo5(std::string& v){ //Not support default calling; make a real reference for std::ref(para) calling
+    for(auto i = 0; i < 5; i++){
+        std::cout << std::this_thread::get_id () << " append '*' :" << v.append ("*") << " is running..." << std::endl;
+        std::this_thread::sleep_for (std::chrono::seconds(1));
+    }
+}
 
 void yao::thread_ex::testSimpleThread(){
     std::thread job(foo1);
@@ -59,6 +65,14 @@ void yao::thread_ex::testSimpleThread(){
 // 2. if real ref is required, pass std::ref(v) from caller, and the callee should take reference or const reference as parameter. example: void bar(const int&) or void bar(int&)
 
 void yao::thread_ex::testSimpleThreadWithPara(){
+    std::string s = "1";
+    std::thread job(foo5, std::ref(s));    //make a reference in foo4. fully share data between threads.
+    std::this_thread::sleep_for (std::chrono::seconds(2));
+    std::cout << "append [c] in caller thread:" << s.append ("c") << std::endl;
+    job.join ();
+    std::cout << "value in caller thread:" << s << std::endl;
+    std::cout << "-----------------" << std::endl;
+
     int v = 0;
     std::thread job1(foo2, v);   //make a copy
     std::this_thread::sleep_for (std::chrono::seconds(3));
@@ -76,21 +90,21 @@ void yao::thread_ex::testSimpleThreadWithPara(){
     v = 0;
     std::thread job3(foo2, std::ref(v));    //make a copy because foo2 does not take ref as para
     std::this_thread::sleep_for (std::chrono::seconds(3));
-    std::cout << "value in caller thread:" << ++v << std::endl;
+    std::cout << "increase value in caller thread:" << ++v << std::endl;
     job3.join ();
     std::cout << "-----------------" << std::endl;
 
     v = 0;
     std::thread job4(foo3, std::ref(v));    //make a const reference in foo3
     std::this_thread::sleep_for (std::chrono::seconds(3));
-    std::cout << "value in caller thread:" << ++v << std::endl;
+    std::cout << "increase value in caller thread:" << ++v << std::endl;
     job4.join ();
     std::cout << "-----------------" << std::endl;
 
     v = 0;
     std::thread job5(foo4, std::ref(v));    //make a reference in foo4. fully share data between threads.
     std::this_thread::sleep_for (std::chrono::seconds(3));
-    std::cout << "value in caller thread:" << ++v << std::endl;
+    std::cout << "increase value in caller thread:" << ++v << std::endl;
     job5.join ();
     std::cout << "-----------------" << std::endl;
 

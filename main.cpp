@@ -42,7 +42,7 @@ void somefun(int& v){
 }
 
 int main(/*int argc, char** argv*/){
-    yao::thread_ex::testObjectThread();
+    yao::thread_ex::testSimpleThreadWithPara ();
     std::cout << "Finished" << std::endl;
     return 0;
 }
