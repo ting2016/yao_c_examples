@@ -18,19 +18,83 @@ void yao::thread_ex::Task::foo(){
     }
 }
 
-void yao::thread_ex::foo(){
+void yao::thread_ex::foo1(){
     for(auto i = 0; i < 5; i++){
         std::cout << std::this_thread::get_id () << " is running..." << std::endl;
         std::this_thread::sleep_for (std::chrono::seconds(1));
     }
 }
 
+void yao::thread_ex::foo2(int v){ //make a copy of para
+    for(auto i = 0; i < 5; i++){
+        std::cout << std::this_thread::get_id () << " change value to:" << ++v << " is running..." << std::endl;
+        std::this_thread::sleep_for (std::chrono::seconds(1));
+    }
+}
+
+void yao::thread_ex::foo3(const int& v){ //make a copy of para as const for default calling; make a real const reference for std::ref(para) calling
+    for(auto i = 0; i < 5; i++){
+        std::cout << std::this_thread::get_id () << " value:" << v << " is running..." << std::endl;
+        std::this_thread::sleep_for (std::chrono::seconds(1));
+    }
+}
+
+void yao::thread_ex::foo4(int& v){ //Not support default calling; make a real reference for std::ref(para) calling
+    for(auto i = 0; i < 5; i++){
+        std::cout << std::this_thread::get_id () << " change value to:" << ++v << " is running..." << std::endl;
+        std::this_thread::sleep_for (std::chrono::seconds(1));
+    }
+}
+
 
 void yao::thread_ex::testSimpleThread(){
-    std::thread job(foo);
+    std::thread job(foo1);
     std::cout << "waiting for thread:" << job.get_id ()<< " to finish its job..." << std::endl;
     std::this_thread::sleep_for (std::chrono::seconds(3));
     job.join ();    //if no join and no detach, then on exit: terminate called without an active exception Aborted (core dumped)
+}
+
+//NOTE: about passing parameter to a thread handle function
+// 1. by default parameter(s) is passing by value(copied). example: void foo(int) == void foo(const int&). void foo(int&) is ill-formated
+// 2. if real ref is required, pass std::ref(v) from caller, and the callee should take reference or const reference as parameter. example: void bar(const int&) or void bar(int&)
+
+void yao::thread_ex::testSimpleThreadWithPara(){
+    int v = 0;
+    std::thread job1(foo2, v);   //make a copy
+    std::this_thread::sleep_for (std::chrono::seconds(3));
+    std::cout << "value in caller thread:" << v << std::endl;
+    job1.join ();
+    std::cout << "-----------------" << std::endl;
+
+    v= 0;
+    std::thread job2(foo3, v);   //make a copy
+    std::this_thread::sleep_for (std::chrono::seconds(3));
+    std::cout << "increase value in caller thread:" << ++v << std::endl;
+    job2.join ();
+    std::cout << "-----------------" << std::endl;
+
+    v = 0;
+    std::thread job3(foo2, std::ref(v));    //make a copy because foo2 does not take ref as para
+    std::this_thread::sleep_for (std::chrono::seconds(3));
+    std::cout << "value in caller thread:" << ++v << std::endl;
+    job3.join ();
+    std::cout << "-----------------" << std::endl;
+
+    v = 0;
+    std::thread job4(foo3, std::ref(v));    //make a const reference in foo3
+    std::this_thread::sleep_for (std::chrono::seconds(3));
+    std::cout << "value in caller thread:" << ++v << std::endl;
+    job4.join ();
+    std::cout << "-----------------" << std::endl;
+
+    v = 0;
+    std::thread job5(foo4, std::ref(v));    //make a reference in foo4. fully share data between threads.
+    std::this_thread::sleep_for (std::chrono::seconds(3));
+    std::cout << "value in caller thread:" << ++v << std::endl;
+    job5.join ();
+    std::cout << "-----------------" << std::endl;
+
+    //WARNING std::thread job6(foo4, v);    //ill-formated because we cannot pass reference directly to a thread handle function.
 }
 
 /*
@@ -39,7 +103,7 @@ void yao::thread_ex::testSimpleThread(){
 
 void yao::thread_ex::testRunAfterObjectDestroyedOnDetachedThread(){
     {
-        std::thread job(foo);
+        std::thread job(foo1);
         job.detach ();
     }
 
@@ -48,7 +112,7 @@ void yao::thread_ex::testRunAfterObjectDestroyedOnDetachedThread(){
 }
 
 void yao::thread_ex::testThreadGuard(){
-    std::thread job(foo);
+    std::thread job(foo1);
     ThreadGuard g(job);
 }
 
@@ -67,8 +131,8 @@ void yao::thread_ex::testObjectThread(){
     std::cout << "waiting for thread:" << job1.get_id ()<< " to finish its job..." << std::endl;
     std::this_thread::sleep_for (std::chrono::seconds(3));
     job1.join ();
-
     std::cout << "------------" << std::endl;
+
     //method 2:
     //std::thread job2((Task()));
     std::thread job2{(Task())};
@@ -85,15 +149,28 @@ void yao::thread_ex::testObjectThread(){
             std::this_thread::sleep_for (std::chrono::seconds(1));
         }
     }).join ();
-
     std::cout << "------------" << std::endl;
+
     //method 4: member function as the entrie of a thread
+    std::thread(&Task::foo, &task).join ();
+    std::cout << "------------" << std::endl;
+
+    //method 5: member function as the entrie of a thread
     std::thread(std::bind(&Task::foo, &task)).join ();
+    std::cout << "------------" << std::endl;
+
+    //method 6: create object, pass it as a parameter to a thread (deeply, thread take this object reference, then use its functor as the entrie of thread)
+    Task task2(0);
+    std::thread job6(std::ref(task2));
+    std::cout << "waiting for thread:" << job1.get_id ()<< " to finish its job..." << std::endl;
+    std::this_thread::sleep_for (std::chrono::seconds(3));
+    job6.join ();
+    std::cout << "------------" << std::endl;
 }
 
 void yao::thread_ex::test (){
     //testObjectThread ();
-    std::thread t(foo);
+    std::thread t(foo1);
     std::cout << t.get_id () << "\t" << t.joinable () << std::endl;
     t.detach ();
     std::cout << t.get_id () << "\t" << t.joinable () << std::endl;

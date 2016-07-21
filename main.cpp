@@ -1,3 +1,4 @@
+#include <functional>
 #include <utility>
 #include "streamlogger.h"
 #include "variadicparameters.h"
@@ -36,7 +37,12 @@
 #include <typeinfo>
 #include <algorithm>
 
+void somefun(int& v){
+    v+= 10;
+}
+
 int main(/*int argc, char** argv*/){
+    yao::thread_ex::testObjectThread();
     std::cout << "Finished" << std::endl;
     return 0;
 }

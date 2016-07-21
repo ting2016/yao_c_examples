@@ -35,6 +35,9 @@ namespace yao{
                 }
                 return *this;
             }
+            virtual ~Task(){
+                std::cout << "DESCTOR is called" << std::endl;
+            }
 
             void operator()() const;
             void print() const;
@@ -56,21 +59,23 @@ namespace yao{
             ThreadGuard(const ThreadGuard&) = delete;
             ThreadGuard& operator=(const ThreadGuard&) = delete;
             ThreadGuard(ThreadGuard&&) = delete;
-            private:
-                std::thread& m_job;
+        private:
+            std::thread& m_job;
         };
 
-        void foo();
-
+        void foo1();
+        void foo2(int v);
+        void foo3(const int& v);
+        void foo4(int& v);
 
         void testSimpleThread();
+        void testSimpleThreadWithPara();
         void testObjectThread();
+//        void testObjectThreadWithPara();
         void testRunAfterObjectDestroyedOnDetachedThread();
         void testThreadGuard();
         void test();
 
     }
 }
-
-
 #endif // THREADTEST_H
