@@ -121,7 +121,7 @@ namespace yao{
             }
         }
 
-        void addWord(std::string word) {
+        void addWord(const std::string& word) {
             if (word.length()>0) {
                 ++m_size;
                 std::string subword = word.substr(1, word.size()-1);
@@ -135,7 +135,7 @@ namespace yao{
             }
         }
 
-        bool isPrefix(std::string pref) const {
+        bool isPrefix(const std::string& pref) const {
             if (pref.length()== 0) {
                 return true;
             }
@@ -145,15 +145,15 @@ namespace yao{
             return false;
         }
 
-        bool isWord(std::string word) const {
-            if (word.length()== 0) {
+        bool isWord(const std::string word) const {
+            if (word.length() == 0) {
                 return m_isEnd;
             }
             std::string cursub;
             Tire const *tmp = this;
             cursub = word;
 
-            while (cursub.length()>0) {
+            while (cursub.length() > 0) {
                 if (tmp->m_children.find(cursub[0]) != tmp->m_children.end()) {
                     tmp = tmp->m_children.find(cursub[0])->second;
                     cursub = cursub.substr(1, cursub.size()-1);
@@ -161,19 +161,17 @@ namespace yao{
                     return false;
                 }
             }
-            return tmp->isWordEnd();
+            return tmp->m_isEnd;
         }
 
-        size_t size() {
-            return m_size;
-        }
+
         void getWords(std::set<std::string> &words, std::string wordSoFar="") const {
             if (m_isEnd) {
                 words.insert(wordSoFar);
             }
             for (const auto &it : m_children) {
                 std::string tmp = wordSoFar + std::string(1, it.first);
-                if (it.second && it.second->isWordEnd()) {
+                if (it.second && it.second->m_isEnd) {
                     words.insert(tmp);
                 }
                 it.second->getWords(words, tmp);
@@ -192,11 +190,6 @@ namespace yao{
                 tmp->getWordsStartingWith(subword, words, nwsf);
             }
         }
-    private:
-        bool isWordEnd() const {
-            return m_isEnd;
-        }
-
 
     private:
         std::map<char, Tire*> m_children;
@@ -206,7 +199,7 @@ namespace yao{
 }
 
 
-int main(int argc, char *argv[]) {
+int main() {
     yao::Tire trie;
     std::string s;
     for(auto i = 0; i < 10; i++){
@@ -217,6 +210,9 @@ int main(int argc, char *argv[]) {
     std::set<std::string> wset;
     trie.getWords(wset);
     std::cout << "The word set has " << wset.size() << " words.\n";
+    for(const auto& w: wset){
+        std::cout << w << std::endl;
+    }
 
 
     std::string prefix;
@@ -224,15 +220,13 @@ int main(int argc, char *argv[]) {
 
         bool isp = trie.isPrefix(prefix);
         std::cout << "find that \"" << prefix << "\" " << (isp?"is":"is not") << " a prefix\n";
-
         wset.clear();
         if (isp) {
             trie.getWordsStartingWith(prefix, wset);
-            std::cout << "find " << wset.size() << " words starting with \""
-                      << prefix << "\":\n";
+            std::cout << "find " << wset.size() << " words starting with \"" << prefix << "\":\n";
 
             for (const auto &wrd : wset) {
-                std::cout << "\t" << wrd << "\n";
+                std::cout << "\t" << wrd << " is a word" << std::endl;
             }
         }
     }
