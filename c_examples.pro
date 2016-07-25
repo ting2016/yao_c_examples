@@ -31,7 +31,8 @@ SOURCES += main.cpp \
     functionaltest.cpp \
     initializer_list_test.cpp \
     signaltest.cpp \
-    timertest.cpp
+    timertest.cpp \
+    sort_test.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -64,7 +65,8 @@ HEADERS += todo.h \
     functionaltest.h \
     initializer_list_test.h \
     signaltest.h \
-    timertest.h
+    timertest.h \
+    sort_test.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread -lrt

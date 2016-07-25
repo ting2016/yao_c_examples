@@ -36,6 +36,8 @@
 #include <typeindex>
 #include <typeinfo>
 #include <algorithm>
+#include "randomtest.h"
+#include "sort_test.h"
 
 void somefun(int& v){
     v+= 10;
@@ -83,6 +85,12 @@ struct X {
 
 
 int main() {
+	int A[10]{18,12,9,4,1,77,2,4,3,25};
+	yao::heapsort(A, 10);
+	for(auto i = 0; i < 10; i++){
+		std::cout << A[i] << std::endl;
+	}
+	
     X a;
     double x = a;
     std::cout << x << std::endl;
