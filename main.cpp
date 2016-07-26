@@ -102,133 +102,117 @@ struct X {
 //    //    printf("%d\n", b.m);
 //}
 
-#include <fstream>
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
 
-#include <chrono>
+#include <unordered_set>
+#include <unordered_map>
 
 
-namespace yao{
-    class Tire {
-    public:
-        Tire(bool end = false) :m_size(0), m_isEnd(end) {}
-        ~Tire() {
-            for (auto &it : m_children) {
-                delete it.second;
-            }
+class Trie {
+public:
+    Trie(bool end = false) :m_size(0), m_isEnd(end) {}
+    ~Trie() {
+        for (auto &it : m_children) {
+            delete it.second;
         }
+    }
 
-        void addWord(const std::string& word) {
-            if (word.length()>0) {
+    void addWord(const std::string& word) {
+        if (word.length()>0) {
+            std::string subword = word.substr(1, word.size()-1);
+            if (m_children[word[0]]) {
+                m_children[word[0]]->addWord(subword);
                 ++m_size;
-                std::string subword = word.substr(1, word.size()-1);
-                if (m_children[word[0]]) {
-                    m_children[word[0]]->addWord(subword);
-                } else {
-                    Tire *tmp = new Tire(word.size()==1);
-                    tmp->addWord(subword);
-                    m_children[word[0]] = tmp;
-                }
+            } else {
+                Trie *tmp = new Trie(word.size()==1);
+                tmp->addWord(subword);
+                m_children[word[0]] = tmp;
             }
         }
-
-        bool isPrefix(const std::string& pref) const {
-            if (pref.length()== 0) {
-                return true;
-            }
-            if (m_children.find(pref[0]) != m_children.end()) {
-                return m_children.find(pref[0])->second->isPrefix(pref.substr(1, pref.size()-1));
-            }
-            return false;
-        }
-
-        bool isWord(const std::string word) const {
-            if (word.length() == 0) {
-                return m_isEnd;
-            }
-            std::string cursub;
-            Tire const *tmp = this;
-            cursub = word;
-
-            while (cursub.length() > 0) {
-                if (tmp->m_children.find(cursub[0]) != tmp->m_children.end()) {
-                    tmp = tmp->m_children.find(cursub[0])->second;
-                    cursub = cursub.substr(1, cursub.size()-1);
-                } else {
-                    return false;
-                }
-            }
-            return tmp->m_isEnd;
-        }
-
-
-        void getWords(std::set<std::string> &words, std::string wordSoFar="") const {
-            if (m_isEnd) {
-                words.insert(wordSoFar);
-            }
-            for (const auto &it : m_children) {
-                std::string tmp = wordSoFar + std::string(1, it.first);
-                if (it.second && it.second->m_isEnd) {
-                    words.insert(tmp);
-                }
-                it.second->getWords(words, tmp);
-            }
-        }
-
-        void getWordsStartingWith(std::string prefix, std::set<std::string> &words, std::string wordSoFar="") const {
-            if (prefix.size() == 0) {
-                getWords(words, wordSoFar);
-                return;
-            }
-            std::string subword = prefix.substr(1, prefix.size()-1);
-            if (m_children.find(prefix[0]) != m_children.end()) {
-                Tire *tmp = m_children.find(prefix[0])->second;
-                std::string nwsf = wordSoFar + std::string(1, prefix[0]);
-                tmp->getWordsStartingWith(subword, words, nwsf);
-            }
-        }
-
-    private:
-        std::map<char, Tire*> m_children;
-        size_t m_size;
-        bool m_isEnd;
-    };
-}
-
-
-int main() {
-    yao::Tire trie;
-    std::string s;
-    for(auto i = 0; i < 10; i++){
-        std::cin >> s;
-        trie.addWord (s);
     }
 
-    std::set<std::string> wset;
-    trie.getWords(wset);
+    bool isPrefix(const std::string& pref) const {
+        if (pref.length()== 0) {
+            return true;
+        }
+        if (m_children.find(pref[0]) != m_children.end()) {
+            return m_children.find(pref[0])->second->isPrefix(pref.substr(1, pref.size()-1));
+        }
+        return false;
+    }
+
+    size_t size() {
+        return m_size;
+    }
+    void getWords(std::unordered_set<std::string> &words, std::string wordSoFar="") const {
+        if (m_isEnd) {
+            words.insert(wordSoFar);
+        }
+        for (const auto &it : m_children) {
+            std::string tmp = wordSoFar + std::string(1, it.first);
+            if (it.second && it.second->m_isEnd) {
+                words.insert(tmp);
+            }
+            it.second->getWords(words, tmp);
+        }
+    }
+
+    void getWordsStartingWith(const std::string &prefix, std::unordered_set<std::string> &words, std::string wordSoFar="") const {
+        if (prefix.size() == 0) {
+            getWords(words, wordSoFar);
+            return;
+        }
+        std::string subword = prefix.substr(1, prefix.size()-1);
+        if (m_children.find(prefix[0]) != m_children.end()) {
+            Trie *tmp = m_children.find(prefix[0])->second;
+            std::string nwsf = wordSoFar + std::string(1, prefix[0]);
+            tmp->getWordsStartingWith(subword, words, nwsf);
+        }
+    }
+private:
+
+private:
+    std::unordered_map<char, Trie*> m_children;
+    size_t m_size;
+    bool m_isEnd;
+};
+
+int main(int argc, char *argv[]) {
+    Trie theTrie;
+    std::cout << "Building trie...\n";
+
+    std::string inputWord;
+    while(true){
+        std::cout << "Input words(begin with letters, X for finish inputing):";
+        std::cin >> inputWord;
+        if(inputWord == "X"){
+            break;
+        }
+        std::transform(inputWord.begin(), inputWord.end(), inputWord.begin(), ::tolower);
+        if (inputWord.find_first_not_of("abcdefghijklmnopqrstuvwxyz") == std::string::npos) {
+            theTrie.addWord(inputWord);
+        }
+    }
+
+    std::unordered_set<std::string> wset;
+    theTrie.getWords(wset);
     std::cout << "The word set has " << wset.size() << " words.\n";
-    for(const auto& w: wset){
-        std::cout << w << std::endl;
+    for(const auto& e: wset){
+        std::cout << "\t" << e << std::endl;
     }
-
 
     std::string prefix;
-    while (std::cin >> prefix) {
-
-        bool isp = trie.isPrefix(prefix);
-        std::cout << "find that \"" << prefix << "\" " << (isp?"is":"is not") << " a prefix\n";
-        wset.clear();
-        if (isp) {
-            trie.getWordsStartingWith(prefix, wset);
-            std::cout << "find " << wset.size() << " words starting with \"" << prefix << "\":\n";
-
-            for (const auto &wrd : wset) {
-                std::cout << "\t" << wrd << " is a word" << std::endl;
-            }
+    do{
+        std::cout << "input prefix to search(X for finish):";
+        std::cin >> prefix;
+        if(prefix == "X"){
+            break;
         }
-    }
+        wset.clear();
+        theTrie.getWordsStartingWith(prefix, wset);
+        std::cout << "find " << wset.size() << " words starting with \"" << prefix << "\":\n";
+        for (const auto &wrd : wset) {
+            std::cout << "\t" << wrd << std::endl;
+        }
+    }while(true);
     return 0;
 }
