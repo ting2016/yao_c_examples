@@ -1,3 +1,4 @@
+#include <utility>
 #include <functional>
 #include <utility>
 #include "streamlogger.h"
@@ -38,7 +39,8 @@
 #include <algorithm>
 #include "randomtest.h"
 #include "sort_test.h"
-
+#include "myhash.h"
+#include "myhash2.h"
 void somefun(int& v){
     v+= 10;
 }
@@ -176,43 +178,66 @@ private:
     bool m_isEnd;
 };
 
-int main(int argc, char *argv[]) {
-    Trie theTrie;
-    std::cout << "Building trie...\n";
+//int main() {
+//    Trie theTrie;
+//    std::cout << "Building trie...\n";
 
-    std::string inputWord;
-    while(true){
-        std::cout << "Input words(begin with letters, X for finish inputing):";
-        std::cin >> inputWord;
-        if(inputWord == "X"){
-            break;
-        }
-        std::transform(inputWord.begin(), inputWord.end(), inputWord.begin(), ::tolower);
-        if (inputWord.find_first_not_of("abcdefghijklmnopqrstuvwxyz") == std::string::npos) {
-            theTrie.addWord(inputWord);
-        }
+//    std::string inputWord;
+//    while(true){
+//        std::cout << "Input words(begin with letters, X for finish inputing):";
+//        std::cin >> inputWord;
+//        if(inputWord == "X"){
+//            break;
+//        }
+//        std::transform(inputWord.begin(), inputWord.end(), inputWord.begin(), ::tolower);
+//        if (inputWord.find_first_not_of("abcdefghijklmnopqrstuvwxyz") == std::string::npos) {
+//            theTrie.addWord(inputWord);
+//        }
+//    }
+
+//    std::unordered_set<std::string> wset;
+//    theTrie.getWords(wset);
+//    std::cout << "The word set has " << wset.size() << " words.\n";
+//    for(const auto& e: wset){
+//        std::cout << "\t" << e << std::endl;
+//    }
+
+//    std::string prefix;
+//    do{
+//        std::cout << "input prefix to search(X for finish):";
+//        std::cin >> prefix;
+//        if(prefix == "X"){
+//            break;
+//        }
+//        wset.clear();
+//        theTrie.getWordsStartingWith(prefix, wset);
+//        std::cout << "find " << wset.size() << " words starting with \"" << prefix << "\":\n";
+//        for (const auto &wrd : wset) {
+//            std::cout << "\t" << wrd << std::endl;
+//        }
+//    }while(true);
+//    return 0;
+//}
+
+unsigned long hashFunc(int key){
+    return key % TABLE_SIZE2;
+}
+
+
+int main(){
+    typedef unsigned long (*HASH_FUN)(int);
+    bloombert_interview::HashMap2<int, std::string, HASH_FUN> map(hashFunc);
+    map.put(23, "hello");
+    map.put(1, "jim");
+    std::cout << map.get(23) << std::endl;
+    try{
+        map.remove(23);
+        std::cout << map.get(23) << std::endl;
+    }catch(std::exception& e){
+        std::cout << e.what() << std::endl;
+    }catch(...){
+        std::cout << "huaishile" << std::endl;
     }
-
-    std::unordered_set<std::string> wset;
-    theTrie.getWords(wset);
-    std::cout << "The word set has " << wset.size() << " words.\n";
-    for(const auto& e: wset){
-        std::cout << "\t" << e << std::endl;
-    }
-
-    std::string prefix;
-    do{
-        std::cout << "input prefix to search(X for finish):";
-        std::cin >> prefix;
-        if(prefix == "X"){
-            break;
-        }
-        wset.clear();
-        theTrie.getWordsStartingWith(prefix, wset);
-        std::cout << "find " << wset.size() << " words starting with \"" << prefix << "\":\n";
-        for (const auto &wrd : wset) {
-            std::cout << "\t" << wrd << std::endl;
-        }
-    }while(true);
+    std::cout << "finished." << std::endl;
     return 0;
 }

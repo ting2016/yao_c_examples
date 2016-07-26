@@ -32,7 +32,9 @@ SOURCES += main.cpp \
     initializer_list_test.cpp \
     signaltest.cpp \
     timertest.cpp \
-    sort_test.cpp
+    sort_test.cpp \
+    myhash.cpp \
+    myhash2.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -66,7 +68,9 @@ HEADERS += todo.h \
     initializer_list_test.h \
     signaltest.h \
     timertest.h \
-    sort_test.h
+    sort_test.h \
+    myhash.h \
+    myhash2.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread -lrt
