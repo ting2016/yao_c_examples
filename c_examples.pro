@@ -13,7 +13,6 @@ SOURCES += main.cpp \
     definetest.cpp \
     version.cpp \
     singleton.cpp \
-    hashtest.cpp \
     maptest.cpp \
     threadtest.cpp \
     functortest.cpp \
@@ -33,8 +32,9 @@ SOURCES += main.cpp \
     signaltest.cpp \
     timertest.cpp \
     sort_test.cpp \
+    radixtree.cpp \
     myhash.cpp \
-    myhash2.cpp
+    hash_ex.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -69,8 +69,8 @@ HEADERS += todo.h \
     signaltest.h \
     timertest.h \
     sort_test.h \
-    myhash.h \
-    myhash2.h
+    radixtree.h \
+    hash_ex.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread -lrt
