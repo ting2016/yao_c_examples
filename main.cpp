@@ -44,9 +44,35 @@
 #include "radixtree.h"
 
 
+bool foo(const std::vector<double>& prices, int& buy, int& sel){
+    bool bRet;
+    double max_diff = 0;
+    int cursor = 0;
+    int size = prices.size ();
+
+    for(auto i = 1; i < size; i++){
+        if(prices.at (i) < prices.at (cursor)){   //seg finished
+            cursor = i;
+        }else{
+            if(prices.at (i) - prices.at (cursor) > max_diff){
+                max_diff = prices.at (i) - prices.at (cursor);
+                buy = cursor;
+                sel = i;
+                bRet = true;
+            }
+        }
+    }
+    return bRet;
+}
 
 int main(){
-    yao::hash::test ();
+    std::vector<double> prices{15, 14, 13, 12, 11, 10};
+    int buy, sel;
+    if(foo(prices, buy, sel)){
+        std::cout << "buy:" << prices[buy] << ", sel:" << prices[sel] << ", benefit:" << prices[sel] - prices[buy] << std::endl;
+    }else{
+        std::cout << "No benefit at all" << std::endl;
+    }
     std::cout << "finished." << std::endl;
     return 0;
 }

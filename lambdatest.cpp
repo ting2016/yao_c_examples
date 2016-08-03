@@ -1,9 +1,5 @@
 #include "lambdatest.h"
 #include <iostream>
-yao::lambda_ex::LambdaTest::LambdaTest()
-{
-
-}
 
 void yao::lambda_ex::testLambda (){
     int a = 1, b = 11, c = 111;
