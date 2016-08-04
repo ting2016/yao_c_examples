@@ -42,7 +42,7 @@
 #include "hash_ex.h"
 #include "hash_ex.h"
 #include "radixtree.h"
-
+#include "binarysearchtree.h"
 
 bool foo(const std::vector<double>& prices, int& buy, int& sel){
     bool bRet;
@@ -65,7 +65,19 @@ bool foo(const std::vector<double>& prices, int& buy, int& sel){
     return bRet;
 }
 
+//void foo(int *& p){
+
+//}
+
 int main(){
+    yao::tree::BinarySearchTree<int> bst;
+    bst.insert (6);
+    bst.insert (9);
+    bst.insert (3);
+    bst.insert (22);
+    bst.print ();
+    std::cout << std::boolalpha << bst.find (99) << std::endl;
+    return 0;
     std::vector<double> prices{15, 14, 13, 12, 11, 10};
     int buy, sel;
     if(foo(prices, buy, sel)){

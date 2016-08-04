@@ -18,9 +18,9 @@ namespace yao{
 
 
         template <typename K, typename V>
-        class  HashNode2{
+        class  HashNode{
         public:
-            HashNode2(const K &key, const V &value) :
+            HashNode(const K &key, const V &value) :
                 key(key), value(value), next(nullptr) {
             }
 
@@ -33,15 +33,15 @@ namespace yao{
             }
 
             void setValue(V value) {
-                HashNode2::value = value;
+                HashNode::value = value;
             }
 
-            HashNode2 *getNext() const {
+            HashNode *getNext() const {
                 return next;
             }
 
-            void setNext(HashNode2 *next) {
-                HashNode2::next = next;
+            void setNext(HashNode *next) {
+                HashNode::next = next;
             }
 
         private:
@@ -49,21 +49,21 @@ namespace yao{
             K key;
             V value;
             // next bucket with the same key
-            HashNode2 *next;
+            HashNode *next;
 
             template <typename T1, typename T2, typename HASH_FUN>
-            friend class HashMap2;
+            friend class HashMap;
         };
 
         template <typename K, typename V, typename HASH_FUN>
-        class HashMap2 {
+        class HashMap {
         public:
-            HashMap2(HASH_FUN hashFunc)
+            HashMap(HASH_FUN hashFunc)
                 : hashFunc(hashFunc){
                 m_data.resize(TABLE_SIZE2);
             }
 
-            ~HashMap2() {
+            ~HashMap() {
                 for(auto& vec: m_data){
                     for(auto & v: vec){
                         delete v;
@@ -92,7 +92,7 @@ namespace yao{
                         return;
                     }
                 }
-                vec.push_back(new HashNode2<K, V>(key, v));
+                vec.push_back(new HashNode<K, V>(key, v));
             }
 
             void remove(const K& key){
@@ -109,7 +109,7 @@ namespace yao{
             }
         private:
             // hash table
-            std::vector<std::vector<HashNode2<K, V>*>> m_data;
+            std::vector<std::vector<HashNode<K, V>*>> m_data;
             HASH_FUN hashFunc;
         };
 

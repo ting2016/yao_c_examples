@@ -7,7 +7,7 @@ unsigned long yao::hash::hashFunc(int key){
 
 void yao::hash::test (){
 //    typedef unsigned long (*HASH_FUN)(int);
-    HashMap2<int, std::string, unsigned long(*)(int)> map(hashFunc);
+    HashMap<int, std::string, unsigned long(*)(int)> map(hashFunc);
     map.put(23, "hello");
     map.put(1, "jim");
     std::cout << map.get(23) << std::endl;

@@ -34,7 +34,8 @@ SOURCES += main.cpp \
     sort_test.cpp \
     radixtree.cpp \
     myhash.cpp \
-    hash_ex.cpp
+    hash_ex.cpp \
+    binarysearchtree.cpp
     #configurer/src/configurer.cpp
 
 HEADERS += todo.h \
@@ -70,7 +71,8 @@ HEADERS += todo.h \
     timertest.h \
     sort_test.h \
     radixtree.h \
-    hash_ex.h
+    hash_ex.h \
+    binarysearchtree.h
 #    configurer/include/configurer.h
 
 LIBS += -lpthread -lrt
