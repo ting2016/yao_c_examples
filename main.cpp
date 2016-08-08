@@ -65,26 +65,152 @@ bool foo(const std::vector<double>& prices, int& buy, int& sel){
     return bRet;
 }
 
-//void foo(int *& p){
+void printVec(const std::vector<int> &vec){
+    std::cout << "--------------" << std::endl;
+    for(auto& elem: vec){
+        std::cout << elem<< std::endl;
+    }
+}
 
-//}
+void printMap(const std::map<int, int> &map){
+    std::cout << "--------------" << std::endl;
+    for(auto& elem: map){
+        std::cout << elem.second << std::endl;
+    }
+}
+
+//vec.size() odd is good, even will crash
+void erase2(std::vector<int>& vec){
+    std::cout << __func__ << "\torigion vector" << std::endl;
+    printVec(vec);
+
+    for(std::vector<int>::iterator it = vec.begin (); it != vec.end (); it++){
+        std::cout << "-->" << *it << std::endl;
+        if((*it) % 2){
+            vec.erase (it);
+        }
+    }
+
+    std::cout << __func__ << "\tmodified vector" << std::endl;
+    printVec(vec);
+}
+
+
+void erase1(std::vector<int>& vec){
+    std::cout << __func__ << "\torigion vector" << std::endl;
+    printVec(vec);
+    for(std::vector<int>::iterator it = vec.begin (); it < vec.end (); ){
+        std::cout << "current node-->" << *it << std::endl;
+        if((*it) % 2){
+            std::cout << "node removed:" << *it << std::endl;
+            vec.erase (it);
+            std::cout << "node after remove:" << *it << std::endl;
+        }else{
+            it++;
+        }
+    }
+
+    std::cout << __func__ << "\tmodified vector" << std::endl;
+    printVec(vec);
+}
+
+
+void erase1(std::map<int, char*>& map){
+    if(map.size () > 0){
+        auto delNode = map.begin ();
+        delete (*delNode).second;
+        map.erase (delNode);
+        erase1 (map);
+    }
+}
+
+void erase2(std::map<int, char*>& map){
+    for(std::map<int,char*>::iterator it = map.begin (); it != map.end (); ){
+        auto delIt = it;
+        ++it;
+        delete (*delIt).second;
+        map.erase (delIt);
+    }
+}
+
+
+void eraseMap1(std::map<int, int>& map){
+    if(map.size () > 0){
+        map.erase (map.cbegin ());
+        eraseMap1 (map);
+    }
+}
+
+void eraseMap2(std::map<int, int>& map){
+    for(std::map<int, int>::const_iterator it = map.cbegin (); it != map.cend (); ){
+        std::cout << "current node-->" << (*it).second << std::endl;
+        if((*it).second % 2){
+            const auto delIt = it;
+            ++it;
+            std::cout << "\tbefore removed:" << (*delIt).second << std::endl;
+            map.erase (delIt);
+            std::cout << "\tafter remove:" << (*delIt).second << std::endl;
+        }else{
+            it++;
+        }
+    }
+}
+
+void eraseMap3(std::map<int, int>& map){
+    for(std::map<int,int>::iterator it = map.begin (); it != map.end (); ){
+        std::cout << "current node-->" << (*it).second << std::endl;
+        if((*it).second % 2){
+            std::cout << "\tbefore removed:" << (*it).second << std::endl;
+            it = map.erase (it);
+            std::cout << "\tafter remove:" << (*it).second << std::endl;
+        }else{
+            it++;
+        }
+    }
+}
+
+void eraseMap4(std::map<int, int>& map){
+    for(std::map<int,int>::iterator it = map.begin (); it != map.end ();){
+        std::cout << "current node-->" << (*it).second << std::endl;
+        if((*it).second % 2){
+            std::cout << "\tbefore removed:" << (*it).second << std::endl;
+            map.erase (it++);       //1. auto tmp = it.next, 2. delete it, 3. it = tmp 4. return it
+            std::cout << "\tafter remove:" << (*it).second << std::endl;
+        }else{
+            ++it;
+        }
+    }
+}
+
+void eraseMap5(std::map<int, int>& map){    //this method is wrong, because it++ is too later
+    for(std::map<int,int>::iterator it = map.begin (); it != map.end (); it++){
+        std::cout << "current node-->" << (*it).second << std::endl;
+        if((*it).second % 2){
+            std::cout << "\tbefore removed:" << (*it).second << std::endl;
+            map.erase (it);
+            std::cout << "\tafter remove:" << (*it).second << std::endl;
+        }
+    }
+}
 
 int main(){
-    yao::tree::BinarySearchTree<int> bst;
-    bst.insert (6);
-    bst.insert (9);
-    bst.insert (3);
-    bst.insert (22);
-    bst.print ();
-    std::cout << std::boolalpha << bst.find (99) << std::endl;
-    return 0;
-    std::vector<double> prices{15, 14, 13, 12, 11, 10};
-    int buy, sel;
-    if(foo(prices, buy, sel)){
-        std::cout << "buy:" << prices[buy] << ", sel:" << prices[sel] << ", benefit:" << prices[sel] - prices[buy] << std::endl;
-    }else{
-        std::cout << "No benefit at all" << std::endl;
+//    std::vector<int> vec;
+
+//    for(auto i = 0; i < 10; i++){
+//        vec.push_back ( 2 * i + 1);
+//    }
+//    erase1(vec);
+
+    std::map<int, int> map;
+    for(auto i = 0; i < 10; i++){
+        map[i] = i;
     }
+    map[6] = 77;
+    printMap (map);
+    eraseMap5 (map);
+    printMap (map);
+
+
     std::cout << "finished." << std::endl;
     return 0;
 }
