@@ -272,8 +272,6 @@ namespace yao{
                 m_data[m_size++] = t;
             }
 
-
-
         protected:
             T** m_data;
             int m_size;

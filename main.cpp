@@ -1,3 +1,4 @@
+#include <iterator>
 #include <utility>
 #include <functional>
 #include <utility>
@@ -79,60 +80,42 @@ void printMap(const std::map<int, int> &map){
     }
 }
 
-//vec.size() odd is good, even will crash
-void erase2(std::vector<int>& vec){
-    std::cout << __func__ << "\torigion vector" << std::endl;
-    printVec(vec);
 
-    for(std::vector<int>::iterator it = vec.begin (); it != vec.end (); it++){
-        std::cout << "-->" << *it << std::endl;
+void eraseVec1(std::vector<int>& vec){
+    for(std::vector<int>::iterator it = vec.begin (); it != vec.end ();){
+        std::cout << "current node:" << *it << std::endl;
         if((*it) % 2){
-            vec.erase (it);
-        }
-    }
-
-    std::cout << __func__ << "\tmodified vector" << std::endl;
-    printVec(vec);
-}
-
-
-void erase1(std::vector<int>& vec){
-    std::cout << __func__ << "\torigion vector" << std::endl;
-    printVec(vec);
-    for(std::vector<int>::iterator it = vec.begin (); it < vec.end (); ){
-        std::cout << "current node-->" << *it << std::endl;
-        if((*it) % 2){
-            std::cout << "node removed:" << *it << std::endl;
-            vec.erase (it);
-            std::cout << "node after remove:" << *it << std::endl;
+            it = vec.erase (it);
         }else{
-            it++;
+            ++it;
         }
     }
-
-    std::cout << __func__ << "\tmodified vector" << std::endl;
-    printVec(vec);
 }
 
 
-void erase1(std::map<int, char*>& map){
-    if(map.size () > 0){
-        auto delNode = map.begin ();
-        delete (*delNode).second;
-        map.erase (delNode);
-        erase1 (map);
+void eraseVec2(std::vector<int>& vec){
+    for(std::vector<int>::iterator it = vec.begin (); it != vec.end ();){
+        std::cout << "current node:" << *it << std::endl;
+        if((*it) % 2){
+            vec.erase (it);
+        }else{
+            ++it;
+        }
     }
 }
 
-void erase2(std::map<int, char*>& map){
-    for(std::map<int,char*>::iterator it = map.begin (); it != map.end (); ){
-        auto delIt = it;
-        ++it;
-        delete (*delIt).second;
-        map.erase (delIt);
+void eraseVec3(std::vector<int>& vec){
+    for(std::vector<int>::iterator it = vec.begin (); it != vec.end ();){
+        std::cout << "current node:" << *it << std::endl;
+        if((*it) % 2){
+            auto next = it + 1;
+            vec.erase (it);
+            it = next;
+        }else{
+            ++it;
+        }
     }
 }
-
 
 void eraseMap1(std::map<int, int>& map){
     if(map.size () > 0){
@@ -150,19 +133,6 @@ void eraseMap2(std::map<int, int>& map){
             std::cout << "\tbefore removed:" << (*delIt).second << std::endl;
             map.erase (delIt);
             std::cout << "\tafter remove:" << (*delIt).second << std::endl;
-        }else{
-            it++;
-        }
-    }
-}
-
-void eraseMap3(std::map<int, int>& map){
-    for(std::map<int,int>::iterator it = map.begin (); it != map.end (); ){
-        std::cout << "current node-->" << (*it).second << std::endl;
-        if((*it).second % 2){
-            std::cout << "\tbefore removed:" << (*it).second << std::endl;
-            it = map.erase (it);
-            std::cout << "\tafter remove:" << (*it).second << std::endl;
         }else{
             it++;
         }
@@ -187,28 +157,30 @@ void eraseMap5(std::map<int, int>& map){    //this method is wrong, because it++
         std::cout << "current node-->" << (*it).second << std::endl;
         if((*it).second % 2){
             std::cout << "\tbefore removed:" << (*it).second << std::endl;
-            map.erase (it);
+            map.erase (it);  //1. auto tmp = it.next, 2. delete it, 3. return tmp
             std::cout << "\tafter remove:" << (*it).second << std::endl;
         }
     }
 }
 
 int main(){
-//    std::vector<int> vec;
+    std::vector<int> vec;
 
-//    for(auto i = 0; i < 10; i++){
-//        vec.push_back ( 2 * i + 1);
-//    }
-//    erase1(vec);
-
-    std::map<int, int> map;
     for(auto i = 0; i < 10; i++){
-        map[i] = i;
+        vec.push_back (i);
     }
-    map[6] = 77;
-    printMap (map);
-    eraseMap5 (map);
-    printMap (map);
+    printVec (vec);
+    eraseVec1 (vec);
+    printVec (vec);
+
+//    std::map<int, int> map;
+//    for(auto i = 0; i < 10; i++){
+//        map[i] = i;
+//    }
+//    map[6] = 77;
+//    printMap (map);
+//    eraseMap5 (map);
+//    printMap (map);
 
 
     std::cout << "finished." << std::endl;
